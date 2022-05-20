@@ -1,10 +1,31 @@
 extends KinematicBody2D
 
+export(PackedScene) var body
+
 const SPEED = 100
 
 var input_dir := Vector2.RIGHT
 var move_dir := Vector2.RIGHT
 var turn_rate = 0.1
+
+onready var lag_pos := Vector2.ZERO
+onready var lag_timer := Timer.new()
+
+func _ready():
+	assert(body != null, "add a scene to the export var body")
+	lag_timer.wait_time = 0.5
+	lag_timer.connect("timeout", self, "lag_timeout")
+	add_child(lag_timer)
+	lag_timer.start()
+
+
+func lag_timeout():
+	var new_body = body.instance()
+	new_body.global_position = lag_pos
+	lag_pos = global_position
+	add_child(new_body)
+	lag_timer.start()
+
 
 func _physics_process(delta: float) -> void:
 	# if you press multiple keys at the same time
