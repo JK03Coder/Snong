@@ -24,6 +24,7 @@ func _ready():
 
 
 func lag_timeout():
+	turn_markers.push_front(global_position)
 	if current_segments <= body_segments:
 		var new_body = body.instance()
 		new_body.global_position = body_spawn_pos
@@ -31,11 +32,13 @@ func lag_timeout():
 		add_child(new_body)
 		lag_timer.start()
 		current_segments += 1
+	else:
+		turn_markers.pop_back()
 
 
 func update_turn(direction: Vector2):
 	input_dir = direction
-	turn_markers.append(global_position)
+#	turn_markers.push_front(global_position)
 
 
 func _physics_process(_delta: float) -> void:
