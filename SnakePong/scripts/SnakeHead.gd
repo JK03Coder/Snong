@@ -2,13 +2,12 @@ extends KinematicBody2D
 
 export(PackedScene) var body
 export(int, 0, 50) var body_segments = 20
-
-const SPEED = 100
+export(int) var speed = 100
 
 var input_dir := Vector2.RIGHT
 var move_dir := Vector2.RIGHT
 var turn_rate = 0.1
-var segment_delay : float = 0.5
+var segment_delay : float = 0.25
 var current_segments : int = 0
 var turn_markers : Array = []
 
@@ -54,4 +53,4 @@ func _physics_process(_delta: float) -> void:
 		update_turn(Vector2.DOWN)
 	move_dir.x = move_toward(move_dir.x, input_dir.x, turn_rate)
 	move_dir.y = move_toward(move_dir.y, input_dir.y, turn_rate)
-	move_and_slide(move_dir * SPEED)
+	move_and_slide(move_dir * speed)

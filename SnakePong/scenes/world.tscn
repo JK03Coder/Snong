@@ -8,3 +8,4 @@
 [node name="SnakeHead" parent="." instance=ExtResource( 1 )]
 position = Vector2( 159, 296 )
 body = ExtResource( 2 )
+speed = 60
