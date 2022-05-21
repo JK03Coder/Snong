@@ -1,33 +1,23 @@
 extends Node2D
 
 export(PackedScene) var tail
-export(int, 0, 50) var tail_segments = 20
 export(int) var speed = 100
+export(int, 0, 50) var tail_segments = 20
+export(int) var segment_gap : int = 35
 
-var current_segments : int = 0
 var turn_rate : float = 0.1
-var segment_delay : float = 0.25
 var input_dir : Vector2 = Vector2.RIGHT
 var move_dir : Vector2 = Vector2.RIGHT
+var changed_dir : bool = false
 
 onready var head := $Head
-onready var spawn_timer := Timer.new()
 
 
 func _ready():
 	assert(tail != null, "add a scene to the export var tail")
-	spawn_timer.connect("timeout", self, "spawn_timeout")
-	spawn_timer.wait_time = segment_delay
-	add_child(spawn_timer)
-	spawn_timer.start()
-
-
-func spawn_timeout():
-	if current_segments <= tail_segments:
-		var new_tail = tail.instance()
-		add_child(new_tail)
-		spawn_timer.start()
-		current_segments += 1
+	# add the starting tail segments
+	for i in tail_segments:
+		add_tail()
 
 
 func _physics_process(delta: float) -> void:
@@ -39,13 +29,42 @@ func _physics_process(delta: float) -> void:
 			# if you didn't press both at the same time change direction
 			if strength != Vector2.ZERO:
 				input_dir = strength
+				changed_dir = true
 		# if you're moving along the y axis
 		else:
 			var strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
 			# if you didn't press both at the same time change direction
 			if strength != Vector2.ZERO:
 				input_dir = strength
+				changed_dir = true
 
 	move_dir.x = move_toward(move_dir.x, input_dir.x, turn_rate)
 	move_dir.y = move_toward(move_dir.y, input_dir.y, turn_rate)
 	head.position += move_dir * delta * speed
+
+	if changed_dir:
+		# if direction has changed loop through all children except the Head
+		for i in range(1, get_child_count()):
+			get_child(i).add_turn(head.position, input_dir)
+
+
+func add_tail() -> void:
+	var tail_inst = tail.instance()
+	var prev_tail = get_child(get_child_count() - 1)
+	# if not head of snake
+	if prev_tail.name != "Head":
+		# set new tail direction to the tail in front of it it's direction
+		tail_inst.cur_dir = prev_tail.cur_dir
+		# add the turn direction and location history
+		tail_inst.turns_loc.append_array(prev_tail.turns_loc)
+		tail_inst.turns_dir.append_array(prev_tail.turns_dir)
+		# set it's position to the tail in front of it
+		# minus the opposite direction it's going by the segment gap size
+		tail_inst.position = prev_tail.position + (-prev_tail.cur_dir * segment_gap)
+	else:
+		# if it is the first tail being added
+		# do the same thing but without turns history
+		tail_inst.cur_dir = input_dir
+		tail_inst.position = head.position + (-input_dir * segment_gap)
+	# finally add the new tail instance as a child of Snake
+	add_child(tail_inst)
