@@ -3,6 +3,7 @@
 [ext_resource path="res://scripts/TailSegment.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 5.0
 
 [node name="TailSegment" type="Area2D"]
 script = ExtResource( 1 )

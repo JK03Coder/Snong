@@ -7,6 +7,10 @@ onready var speed : int = get_parent().speed
 onready var turn_rate : float = get_parent().turn_rate
 
 
+func _ready():
+	connect("area_entered", self, "on_area_entered")
+
+
 func change_dir() -> void:
 	cur_dir = turns_dir[0]
 	turns_dir.pop_front()
@@ -18,10 +22,18 @@ func add_turn(head_pos: Vector2, dir: Vector2) -> void:
 	turns_dir.append(dir)
 
 
+func on_area_entered(area: Area2D) -> void:
+	if area.name == "Head":
+		get_parent().hit_self()
+
+
 func _physics_process(delta: float) -> void:
 	# if the snake head has turned ahead then check if you've hit that turn location
 	if turns_dir.size() > 0:
 		match cur_dir:
+			# for every direction check if you've past the turnn point
+			# if you've past the turn point move back and forward the amount you should have
+			# also change direction
 			Vector2.RIGHT:
 				if position.x >= turns_loc[0].x:
 					var dif = position.x - turns_loc[0].x

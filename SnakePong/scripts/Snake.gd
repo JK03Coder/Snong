@@ -63,5 +63,12 @@ func add_tail() -> void:
 		# do the same thing but without turns history
 		tail_inst.cur_dir = input_dir
 		tail_inst.position = head.position + (-input_dir * segment_gap)
+		# set the first one to not detect collision
+		tail_inst.monitorable = false
+		tail_inst.monitoring = false
 	# finally add the new tail instance as a child of Snake
 	add_child(tail_inst)
+
+
+func hit_self() -> void:
+	get_tree().reload_current_scene()
