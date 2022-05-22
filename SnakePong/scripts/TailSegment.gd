@@ -3,7 +3,6 @@ extends Area2D
 var turns_dir = []
 var turns_loc = []
 onready var cur_dir : Vector2
-onready var move_dir : Vector2 = cur_dir
 onready var speed : int = get_parent().speed
 onready var turn_rate : float = get_parent().turn_rate
 
@@ -25,17 +24,27 @@ func _physics_process(delta: float) -> void:
 		match cur_dir:
 			Vector2.RIGHT:
 				if position.x >= turns_loc[0].x:
+					var dif = position.x - turns_loc[0].x
+					position.x -= dif
 					change_dir()
+					position += cur_dir * abs(dif)
 			Vector2.LEFT:
 				if position.x <= turns_loc[0].x:
+					var dif = position.x - turns_loc[0].x
+					position.x -= dif
 					change_dir()
+					position += cur_dir * abs(dif)
 			Vector2.UP:
 				if position.y <= turns_loc[0].y:
+					var dif = position.y - turns_loc[0].y
+					position.y -= dif
 					change_dir()
+					position += cur_dir * abs(dif)
 			Vector2.DOWN:
 				if position.y >= turns_loc[0].y:
+					var dif = position.y - turns_loc[0].y
+					position.y -= dif
 					change_dir()
+					position += cur_dir * abs(dif)
 
-	move_dir.x = move_toward(move_dir.x, cur_dir.x, turn_rate)
-	move_dir.y = move_toward(move_dir.y, cur_dir.y, turn_rate)
-	position += move_dir * delta * speed
+	position += cur_dir * delta * speed

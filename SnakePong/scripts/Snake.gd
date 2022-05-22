@@ -7,7 +7,6 @@ export(int) var segment_gap : int = 35
 
 var turn_rate : float = 0.1
 var input_dir : Vector2 = Vector2.RIGHT
-var move_dir : Vector2 = Vector2.RIGHT
 var changed_dir : bool = false
 
 onready var head := $Head
@@ -38,9 +37,7 @@ func _physics_process(delta: float) -> void:
 				input_dir = strength
 				changed_dir = true
 
-	move_dir.x = move_toward(move_dir.x, input_dir.x, turn_rate)
-	move_dir.y = move_toward(move_dir.y, input_dir.y, turn_rate)
-	head.position += move_dir * delta * speed
+	head.position += input_dir * delta * speed
 
 	if changed_dir:
 		# if direction has changed loop through all children except the Head
