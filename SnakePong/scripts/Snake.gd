@@ -3,7 +3,7 @@ extends Node2D
 export(PackedScene) var tail
 export(int) var speed = 100
 export(int, 0, 50) var tail_segments = 20
-export(int) var segment_gap : int = 35
+export(int) var segment_gap : int = 16
 
 var turn_rate : float = 0.1
 var input_dir : Vector2 = Vector2.RIGHT
@@ -38,9 +38,11 @@ func _physics_process(delta: float) -> void:
 				changed_dir = true
 
 	if changed_dir:
+		changed_dir = false
 		# if direction has changed loop through all children except the Head
 		for i in range(1, get_child_count()):
 			get_child(i).add_turn(head.position, input_dir)
+
 
 	head.position += input_dir * delta * speed
 
