@@ -10,8 +10,8 @@
 [node name="Snake" parent="." instance=ExtResource( 1 )]
 position = Vector2( 94, 277 )
 tail = ExtResource( 2 )
-speed = 300
-tail_segments = 50
+tail_segments = 30
+segment_gap = 16
 
 [node name="Ball" parent="." instance=ExtResource( 4 )]
 position = Vector2( 472, 274 )
