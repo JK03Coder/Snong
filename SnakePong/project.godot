@@ -14,18 +14,6 @@ config/name="SnakePong"
 run/main_scene="res://scenes/World.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Global="*res://Global.gd"
-
-[display]
-
-window/dpi/allow_hidpi=true
-
-[global]
-
-hidpi=false
-
 [input]
 
 move_right={
