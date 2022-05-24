@@ -37,12 +37,12 @@ func _physics_process(delta: float) -> void:
 				input_dir = strength
 				changed_dir = true
 
+	head.position += input_dir * delta * speed
+
 	if changed_dir:
 		# if direction has changed loop through all children except the Head
 		for i in range(1, get_child_count()):
 			get_child(i).add_turn(head.position, input_dir)
-
-	head.position += input_dir * delta * speed
 
 
 func add_tail() -> void:

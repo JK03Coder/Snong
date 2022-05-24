@@ -8,6 +8,6 @@ func _process(delta):
 	#rotation += angular_speed * delta
 	#var velocity = Vector2.UP.rotated(rotation) * speed
 	#position += velocity * delta
-
+	
 	position.y += delta * 300 #Testing y-movement being linked globally
 	Global.ballPosY = position.y

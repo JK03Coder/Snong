@@ -28,20 +28,35 @@ func on_area_entered(area: Area2D) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# get the next position to set the snake tail segment
-	var next_pos : Vector2 = position + cur_dir * delta * speed
-
 	# if the snake head has turned ahead then check if you've hit that turn location
 	if turns_dir.size() > 0:
-		# get the vector of how far it will pass over the turn location
-		# which will also point in the same direction you're going when you pass the turn location
-		var over_pos : Vector2 = turns_loc[0].direction_to(next_pos)
-		# if in the next frame you're past the turn location
-		if over_pos.normalized() == cur_dir:
-			# the next_position will be from that turn location plus how much
-			# you would have past the turning point
-			next_pos = turns_loc[0] + (turns_dir[0] * over_pos.length())
-			change_dir()
+		match cur_dir:
+			# for every direction check if you've past the turnn point
+			# if you've past the turn point move back and forward the amount you should have
+			# also change direction
+			Vector2.RIGHT:
+				if position.x >= turns_loc[0].x:
+					var dif = position.x - turns_loc[0].x
+					position.x -= dif
+					change_dir()
+					position += cur_dir * abs(dif)
+			Vector2.LEFT:
+				if position.x <= turns_loc[0].x:
+					var dif = position.x - turns_loc[0].x
+					position.x -= dif
+					change_dir()
+					position += cur_dir * abs(dif)
+			Vector2.UP:
+				if position.y <= turns_loc[0].y:
+					var dif = position.y - turns_loc[0].y
+					position.y -= dif
+					change_dir()
+					position += cur_dir * abs(dif)
+			Vector2.DOWN:
+				if position.y >= turns_loc[0].y:
+					var dif = position.y - turns_loc[0].y
+					position.y -= dif
+					change_dir()
+					position += cur_dir * abs(dif)
 
-	# then finally set the next position to where you should be
-	position = next_pos
+	position += cur_dir * delta * speed
