@@ -4,6 +4,7 @@ export(PackedScene) var tail
 export(int) var speed = 100
 export(int, 0, 50) var tail_segments = 20
 export(int) var segment_gap : int = 35
+export(float) var turn_delay : float = 0.15
 
 var turn_rate : float = 0.1
 var input_dir : Vector2 = Vector2.RIGHT
@@ -18,26 +19,30 @@ func _ready():
 	for i in tail_segments:
 		add_tail()
 
+var time : float = 0
 
 func _physics_process(delta: float) -> void:
+	time += delta
 	# if a movement key is pressed once
-	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_left"):
-		# if you're moving along the x axis
-		if abs(input_dir.dot(Vector2.RIGHT)) == 1.0:
-			var strength = Vector2(0.0, Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
-			# if you didn't press both at the same time change direction
-			if strength != Vector2.ZERO:
-				input_dir = strength
-				changed_dir = true
-		# if you're moving along the y axis
-		else:
-			var strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
-			# if you didn't press both at the same time change direction
-			if strength != Vector2.ZERO:
-				input_dir = strength
-				changed_dir = true
+	if time > turn_delay:
+		if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_left"):
+			# if you're moving along the x axis
+			if abs(input_dir.dot(Vector2.RIGHT)) == 1.0:
+				var strength = Vector2(0.0, Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
+				# if you didn't press both at the same time change direction
+				if strength != Vector2.ZERO:
+					input_dir = strength
+					changed_dir = true
+			# if you're moving along the y axis
+			else:
+				var strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
+				# if you didn't press both at the same time change direction
+				if strength != Vector2.ZERO:
+					input_dir = strength
+					changed_dir = true
 
 	if changed_dir:
+		time = 0.0
 		changed_dir = false
 		# if direction has changed loop through all children except the Head
 		for i in range(1, get_child_count()):
