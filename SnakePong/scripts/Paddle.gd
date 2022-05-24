@@ -1,9 +1,10 @@
-extends RigidBody2D
+extends KinematicBody2D
 
-export(float) var force : float = 10
+export(float) var speed : float = 30.0
 
-func _integrate_forces(state: Physics2DDirectBodyState) -> void:
-	if Global.ball_position.y > global_position.y:
-		apply_central_impulse(Vector2.DOWN * force)
-	else:
-		apply_central_impulse(Vector2.UP * force)
+var direction : Vector2
+
+
+func _physics_process(delta: float) -> void:
+
+	global_position.y = Global.ball_position.y
