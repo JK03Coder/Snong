@@ -28,35 +28,40 @@ func on_area_entered(area: Area2D) -> void:
 
 
 func _physics_process(delta: float) -> void:
+
+	# get the next position to move during this frame
+	var next_pos = position + (cur_dir * delta * speed)
+
 	# if the snake head has turned ahead then check if you've hit that turn location
 	if turns_dir.size() > 0:
 		match cur_dir:
-			# for every direction check if you've past the turnn point
+			# for every direction check if you've past the turning point
 			# if you've past the turn point move back and forward the amount you should have
 			# also change direction
 			Vector2.RIGHT:
-				if position.x >= turns_loc[0].x:
-					var dif = position.x - turns_loc[0].x
-					position.x -= dif
+				if next_pos.x > turns_loc[0].x:
+					var dif = next_pos.x - turns_loc[0].x
+					next_pos.x -= dif
 					change_dir()
-					position += cur_dir * abs(dif)
+					next_pos += cur_dir * abs(dif)
 			Vector2.LEFT:
-				if position.x <= turns_loc[0].x:
-					var dif = position.x - turns_loc[0].x
-					position.x -= dif
+				if next_pos.x < turns_loc[0].x:
+					var dif = next_pos.x - turns_loc[0].x
+					next_pos.x -= dif
 					change_dir()
-					position += cur_dir * abs(dif)
+					next_pos += cur_dir * abs(dif)
 			Vector2.UP:
-				if position.y <= turns_loc[0].y:
-					var dif = position.y - turns_loc[0].y
-					position.y -= dif
+				if next_pos.y < turns_loc[0].y:
+					var dif = next_pos.y - turns_loc[0].y
+					next_pos.y -= dif
 					change_dir()
-					position += cur_dir * abs(dif)
+					next_pos += cur_dir * abs(dif)
 			Vector2.DOWN:
-				if position.y >= turns_loc[0].y:
-					var dif = position.y - turns_loc[0].y
-					position.y -= dif
+				if next_pos.y > turns_loc[0].y:
+					var dif = next_pos.y - turns_loc[0].y
+					next_pos.y -= dif
 					change_dir()
-					position += cur_dir * abs(dif)
+					next_pos += cur_dir * abs(dif)
 
-	position += cur_dir * delta * speed
+	# then finally move where you're supposed to move
+	position = next_pos
