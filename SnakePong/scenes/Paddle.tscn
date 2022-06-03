@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/Paddle.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 64 )
+extents = Vector2( 6, 32 )
 
 [node name="Paddle" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -12,5 +12,5 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.929412, 0.294118, 0.294118, 1 )
-polygon = PoolVector2Array( -8, -64, 8, -64, 8, 64, -8, 64 )
+color = Color( 0.92, 0.92, 0.92, 1 )
+polygon = PoolVector2Array( -6, -32, 6, -32, 6, 32, -6, 32 )

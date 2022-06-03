@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 385.125, 10 )
 
 [node name="Wall" type="StaticBody2D"]
 
