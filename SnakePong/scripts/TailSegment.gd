@@ -9,6 +9,8 @@ onready var turn_rate : float = get_parent().turn_rate
 
 func _ready():
 	connect("area_entered", self, "on_area_entered")
+	$AnimatedSprite.set_frame(floor(rand_range(0.1,7.9)))
+	$AnimatedSprite.play("default")
 
 
 func change_dir() -> void:

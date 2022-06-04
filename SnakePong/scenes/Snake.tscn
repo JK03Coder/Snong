@@ -14,10 +14,10 @@
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "default",
-"speed": 10.0
+"speed": 8.0
 } ]
 
 [node name="Snake" type="Node2D"]
@@ -29,7 +29,9 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Head"]
-z_index = 1
+position = Vector2( 0, 1 )
+z_index = 2
+z_as_relative = false
 frames = SubResource( 2 )
-frame = 4
+frame = 9
 playing = true

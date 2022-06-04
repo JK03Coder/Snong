@@ -12,31 +12,34 @@
 position = Vector2( 83, 117 )
 tail = ExtResource( 2 )
 speed = 300
-tail_segments = 15
-segment_gap = 18
+segment_gap = 12
 
-[node name="Wall1" parent="." instance=ExtResource( 3 )]
+[node name="Walls" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" parent="Wall1" index="0"]
+[node name="Wall1" parent="Walls" instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="Walls/Wall1" index="0"]
 position = Vector2( 386, 3 )
 
-[node name="Wall" parent="." instance=ExtResource( 3 )]
+[node name="Wall2" parent="Walls" instance=ExtResource( 3 )]
 position = Vector2( 0, 279 )
 rotation = 1.5708
 
-[node name="Wall3" parent="." instance=ExtResource( 3 )]
+[node name="Wall3" parent="Walls" instance=ExtResource( 3 )]
 position = Vector2( 0, 600 )
 
-[node name="CollisionShape2D" parent="Wall3" index="0"]
+[node name="CollisionShape2D" parent="Walls/Wall3" index="0"]
 position = Vector2( 384.875, -89 )
 
 [node name="Ball" parent="." instance=ExtResource( 4 )]
-position = Vector2( 261, 119 )
-linear_velocity = Vector2( 200, 200 )
-speed = 250.0
+position = Vector2( 635, 93 )
+linear_velocity = Vector2( -200, 80 )
+speed = 240.0
+deltaSpeed = 8.0
+changeTime = 5.0
 
 [node name="Paddle" parent="." instance=ExtResource( 5 )]
 position = Vector2( 728, 243 )
 
-[editable path="Wall1"]
-[editable path="Wall3"]
+[editable path="Walls/Wall1"]
+[editable path="Walls/Wall3"]
