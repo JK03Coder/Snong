@@ -26,7 +26,7 @@ func add_turn(head_pos: Vector2, dir: Vector2) -> void:
 
 func on_area_entered(area: Area2D) -> void:
 	if area.name == "Head":
-		get_parent().hit_self()
+		get_parent().death()
 
 
 func _physics_process(delta: float) -> void:

@@ -6,7 +6,6 @@ export(int, 0, 50) var tail_segments = 20
 export(int) var segment_gap : int = 35
 export(int) var player_index: int = 0
 
-
 var turn_rate : float = 0.1
 var input_dir : Vector2 = Vector2.RIGHT
 var changed_dir : bool = false
@@ -19,6 +18,13 @@ func _ready():
 	# add the starting tail segments
 	for i in tail_segments:
 		add_tail()
+
+
+func _process(delta: float) -> void:
+	if head.global_position.x < 0 or head.global_position.x > 768:
+		death()
+	elif head.global_position.y < 0 or head.global_position.y > 512:
+		death()
 
 
 func _physics_process(delta: float) -> void:
@@ -73,5 +79,5 @@ func add_tail() -> void:
 	add_child(tail_inst)
 
 
-func hit_self() -> void:
-	get_tree().reload_current_scene()
+func death() -> void:
+	get_tree().change_scene("res://scenes/TitleScreen.tscn")

@@ -18,7 +18,7 @@ func _physics_process(delta: float):
 	# Sets velocity to a baseline speed
 	if linear_velocity.length() > speed:
 		linear_velocity = linear_velocity.normalized() * speed
-	
+
 
 func _on_Timer_timeout():
 	speed += deltaSpeed

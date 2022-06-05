@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SnakePong"
-run/main_scene="res://scenes/World.tscn"
+run/main_scene="res://scenes/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
