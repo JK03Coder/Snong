@@ -11,10 +11,13 @@ var input_dir : Vector2 = Vector2.RIGHT
 var changed_dir : bool = false
 
 onready var head := $Head
-
+onready var delay := $Head/Delay
 
 func _ready():
 	assert(tail != null, "add a scene to the export var tail")
+	delay.wait_time = 0.5
+	delay.one_shot = true
+	Global.num_of_segments = tail_segments
 	# add the starting tail segments
 	for i in tail_segments:
 		add_tail()
@@ -77,6 +80,15 @@ func add_tail() -> void:
 		tail_inst.monitoring = false
 	# finally add the new tail instance as a child of Snake
 	add_child(tail_inst)
+
+
+func remove_tail() -> void:
+	if delay.is_stopped():
+		Global.num_of_segments -= 1
+		if get_child_count() <= 1:
+			get_tree().change_scene("res://scenes/TitleScreen.tscn")
+		get_child(get_child_count()-1).queue_free()
+		delay.start()
 
 
 func death() -> void:

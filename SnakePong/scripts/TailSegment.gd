@@ -9,6 +9,7 @@ onready var turn_rate : float = get_parent().turn_rate
 
 func _ready():
 	connect("area_entered", self, "on_area_entered")
+	connect("body_exited", self, "on_body_exited")
 	$AnimatedSprite.set_frame(floor(rand_range(0.1,7.9)))
 	$AnimatedSprite.play("default")
 
@@ -27,6 +28,11 @@ func add_turn(head_pos: Vector2, dir: Vector2) -> void:
 func on_area_entered(area: Area2D) -> void:
 	if area.name == "Head":
 		get_parent().death()
+
+
+func on_body_exited(body: Node) -> void:
+	if body.name == "Ball":
+		get_parent().remove_tail()
 
 
 func _physics_process(delta: float) -> void:
