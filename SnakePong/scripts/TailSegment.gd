@@ -13,6 +13,8 @@ func _ready():
 	$AnimatedSprite.set_frame(floor(rand_range(0.1,7.9)))
 	$AnimatedSprite.play("default")
 
+func _process(delta):
+	speed = get_parent().speed
 
 func change_dir() -> void:
 	cur_dir = turns_dir[0]

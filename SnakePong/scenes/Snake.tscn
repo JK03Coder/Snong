@@ -10,7 +10,8 @@
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-head6.png" type="Texture" id=8]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-head1.png" type="Texture" id=9]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=3]
+radius = 9.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -27,16 +28,17 @@ script = ExtResource( 1 )
 use_parent_material = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Head"]
 use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
-frame = 12
 playing = true
 
 [node name="Delay" type="Timer" parent="Head"]
 wait_time = 0.5
 one_shot = true
+
+[connection signal="area_entered" from="Head" to="." method="_on_Head_area_entered"]

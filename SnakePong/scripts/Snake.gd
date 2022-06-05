@@ -2,6 +2,7 @@ extends Node2D
 
 export(PackedScene) var tail
 export(int) var speed = 100
+export(int) var deltaSpeed = 5
 export(int, 0, 50) var tail_segments = 20
 export(int) var segment_gap : int = 35
 export(int) var player_index: int = 0
@@ -15,7 +16,7 @@ onready var delay := $Head/Delay
 
 func _ready():
 	assert(tail != null, "add a scene to the export var tail")
-	delay.wait_time = 0.5
+	delay.wait_time = 2.0
 	delay.one_shot = true
 	Global.num_of_segments = tail_segments
 	# add the starting tail segments
@@ -88,6 +89,7 @@ func remove_tail() -> void:
 		if get_child_count() <= 1:
 			get_tree().change_scene("res://scenes/TitleScreen.tscn")
 		get_child(get_child_count()-1).queue_free()
+		speed += deltaSpeed
 		delay.start()
 
 
