@@ -13,12 +13,9 @@ func _process(delta: float) -> void:
 	Global.ball_position = global_position
 	# Rotates sprite based on angle of velocity.
 	$AnimatedSprite.rotation_degrees = linear_velocity.angle() * 180 / PI
-
-func _physics_process(delta: float):
-	# Sets velocity to a baseline speed
+	# Fixes speed if it gets messed up in bouncing.
 	if linear_velocity.length() > speed:
 		linear_velocity = linear_velocity.normalized() * speed
-
 
 func _on_Timer_timeout():
 	speed += deltaSpeed

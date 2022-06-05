@@ -11,6 +11,8 @@ var turn_rate : float = 0.1
 var input_dir : Vector2 = Vector2.RIGHT
 var changed_dir : bool = false
 
+signal game_over
+
 onready var head := $Head
 onready var delay := $Head/Delay
 
@@ -94,4 +96,9 @@ func remove_tail() -> void:
 
 
 func death() -> void:
+	emit_signal("game_over")
 	get_tree().change_scene("res://scenes/TitleScreen.tscn")
+
+func _on_Head_area_entered(area: Node):
+	if area.is_in_group("death"):
+		death()

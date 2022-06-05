@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/392889__djlprojects__pressing-stop-on-an-old-tape-machine.mp3-29e377d965f75ae9665229692b7a60d5.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/392889__djlprojects__pressing-stop-on-an-old-tape-machine.mp3"
+dest_files=[ "res://.import/392889__djlprojects__pressing-stop-on-an-old-tape-machine.mp3-29e377d965f75ae9665229692b7a60d5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
