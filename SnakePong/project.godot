@@ -16,6 +16,7 @@ config/icon="res://assets/Sprites/Snake Sprites/snake-head2.png"
 
 [autoload]
 
+SfxMan="*res://autoload/SFXMan.tscn"
 Global="*res://scripts/Global.gd"
 
 [display]

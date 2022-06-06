@@ -96,6 +96,7 @@ func remove_tail() -> void:
 
 
 func death() -> void:
+	SfxMan.play_deathsfx()
 	emit_signal("game_over")
 	get_tree().change_scene("res://scenes/TitleScreen.tscn")
 
