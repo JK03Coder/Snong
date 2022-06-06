@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/Snake.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/TailSegment.tscn" type="PackedScene" id=2]
@@ -10,8 +10,6 @@
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=8]
 [ext_resource path="res://assets/UI/upheaval/upheavtt.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/Sound/Nick Otheen - little scary movie.mp3" type="AudioStream" id=10]
-[ext_resource path="res://assets/Sound/392889__djlprojects__pressing-stop-on-an-old-tape-machine.mp3" type="AudioStream" id=11]
-[ext_resource path="res://scenes/AnimationPlayer.gd" type="Script" id=12]
 
 [sub_resource type="ShaderMaterial" id=3]
 
@@ -52,58 +50,6 @@ shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.3
 
-[sub_resource type="Animation" id=8]
-resource_name = "normal"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1.18921 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../../../music:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../../music:stream")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( -0.1, 0.8 ),
-"transitions": PoolRealArray( 0, 1 ),
-"update": 1,
-"values": [ ExtResource( 10 ), ExtResource( 11 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../../../music:volume_db")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( -0.1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -15.0 ]
-}
-
 [node name="World" type="Node2D"]
 
 [node name="Background" type="ColorRect" parent="."]
@@ -120,9 +66,9 @@ __meta__ = {
 position = Vector2( 83, 117 )
 z_index = 11
 tail = ExtResource( 2 )
-speed = 200
+speed = 220
 deltaSpeed = 4
-tail_segments = 40
+tail_segments = 45
 segment_gap = 12
 
 [node name="Walls" type="Node2D" parent="."]
@@ -190,7 +136,7 @@ margin_top = 241.0
 margin_right = 251.0
 margin_bottom = 269.0
 custom_fonts/font = SubResource( 6 )
-text = "40"
+text = "45"
 align = 1
 script = ExtResource( 7 )
 
@@ -218,11 +164,3 @@ __meta__ = {
 stream = ExtResource( 10 )
 volume_db = -15.0
 autoplay = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Camera2D/CanvasLayer/ColorRect")
-anims/death = SubResource( 8 )
-anims/normal = SubResource( 8 )
-script = ExtResource( 12 )
-
-[connection signal="game_over" from="Snake" to="AnimationPlayer" method="_on_Snake_game_over"]

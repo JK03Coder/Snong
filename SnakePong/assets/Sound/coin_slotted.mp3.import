@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/coin_slotted.mp3-0f3db69ccffe74b2875e4d63fcb0dd53.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/coin_slotted.mp3"
+dest_files=[ "res://.import/coin_slotted.mp3-0f3db69ccffe74b2875e4d63fcb0dd53.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

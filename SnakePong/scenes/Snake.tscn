@@ -35,7 +35,7 @@ use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
-frame = 11
+frame = 10
 playing = true
 
 [node name="Delay" type="Timer" parent="Head"]

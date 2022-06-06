@@ -10,4 +10,5 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if start_delay:
+		#SfxMan.play_coinsfx()
 		get_tree().change_scene("res://scenes/World.tscn")

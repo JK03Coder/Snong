@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
 [ext_resource path="res://assets/UI/upheaval/upheavtt.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/Sound/static_noise.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/UI/pixeltype/Pixeltype.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=3]
 size = 64
@@ -12,6 +13,10 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=2]
 size = 48
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+font_data = ExtResource( 5 )
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -52,7 +57,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0.1, 0.6, 1.2 ),
 "transitions": PoolRealArray( 0, 0, 0 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="TitleScreen" type="Control"]
@@ -69,9 +74,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -95.0
-margin_top = -128.0
+margin_top = -136.0
 margin_right = 95.0
-margin_bottom = -70.0
+margin_bottom = -78.0
 custom_fonts/font = SubResource( 3 )
 text = "SNONG"
 align = 1
@@ -91,10 +96,12 @@ text = "Press to start"
 align = 1
 
 [node name="Credits Label" type="Label" parent="."]
-margin_top = 429.0
+margin_top = 427.0
 margin_right = 768.0
-margin_bottom = 477.0
-text = "- Game by Justin K, Justin K, Aditya B and Imre -
+margin_bottom = 484.0
+custom_constants/line_spacing = 0
+custom_fonts/font = SubResource( 5 )
+text = "- Game by Justin K, Justin X, Aditya B and Imre -
 
 GDG 2022 Game Jam 2 - \"Classic with a Twist\""
 align = 1
