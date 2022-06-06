@@ -1,5 +1,6 @@
 extends Node2D
 
+export(String, FILE, "*.tscn,*.scn") var title
 export(PackedScene) var tail
 export(int) var speed = 100
 export(int) var deltaSpeed = 5
@@ -89,7 +90,7 @@ func remove_tail() -> void:
 	if delay.is_stopped():
 		Global.num_of_segments -= 1
 		if get_child_count() <= 1:
-			get_tree().change_scene("res://scenes/TitleScreen.tscn")
+			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()
 		speed += deltaSpeed
 		delay.start()

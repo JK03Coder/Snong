@@ -67,6 +67,11 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+main_scene = "res://scenes/world.tscn"
+
+[node name="start_delay" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
 [node name="Title Label" type="Label" parent="."]
 anchor_left = 0.5
@@ -117,8 +122,8 @@ __meta__ = {
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
 material = SubResource( 1 )
-margin_right = 767.0
-margin_bottom = 513.0
+margin_right = 768.0
+margin_bottom = 512.0
 __meta__ = {
 "_edit_lock_": true
 }

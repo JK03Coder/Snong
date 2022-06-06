@@ -65,6 +65,7 @@ __meta__ = {
 [node name="Snake" parent="." groups=["player1"] instance=ExtResource( 1 )]
 position = Vector2( 83, 117 )
 z_index = 11
+title = "res://scenes/TitleScreen.tscn"
 tail = ExtResource( 2 )
 speed = 220
 deltaSpeed = 4
@@ -154,8 +155,8 @@ __meta__ = {
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
 material = SubResource( 5 )
-margin_right = 767.0
-margin_bottom = 513.0
+margin_right = 768.0
+margin_bottom = 512.0
 __meta__ = {
 "_edit_lock_": true
 }
