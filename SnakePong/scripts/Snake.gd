@@ -16,6 +16,7 @@ signal game_over
 
 onready var head := $Head
 onready var delay := $Head/Delay
+onready var sprite := $Head/AnimatedSprite
 
 func _ready():
 	assert(tail != null, "add a scene to the export var tail")
@@ -28,10 +29,15 @@ func _ready():
 
 
 func _process(delta: float) -> void:
-	if head.global_position.x < 0 or head.global_position.x > 768:
-		death()
-	elif head.global_position.y < 0 or head.global_position.y > 512:
-		death()
+	# Rotation based on direction of motion
+	if input_dir == Vector2.LEFT:
+		sprite.rotation_degrees = 90.0
+	elif input_dir == Vector2.UP:
+		sprite.rotation_degrees = 180.0
+	elif input_dir == Vector2.RIGHT:
+		sprite.rotation_degrees = 270.0
+	else:
+		sprite.rotation_degrees = 0.0
 
 
 func _physics_process(delta: float) -> void:
