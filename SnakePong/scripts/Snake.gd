@@ -2,10 +2,10 @@ extends Node2D
 
 export(String, FILE, "*.tscn,*.scn") var title
 export(PackedScene) var tail
-export(int) var speed = 100
+export(int) var speed = 200
 export(int) var deltaSpeed = 5
 export(int, 0, 50) var tail_segments = 20
-export(int) var segment_gap : int = 35
+export(int) var segment_gap : int = 12
 export(int) var player_index: int = 0
 
 var turn_rate : float = 0.1

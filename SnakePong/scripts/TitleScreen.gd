@@ -5,7 +5,6 @@ export(String, FILE, "*.tscn,*.scn") var main_scene
 onready var start_delay := $start_delay
 
 func _ready() -> void:
-	$AudioStreamPlayer.volume_db = 0
 	$AudioStreamPlayer.play()
 	$AnimationPlayer.play("Pinging")
 

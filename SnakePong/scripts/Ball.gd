@@ -7,7 +7,6 @@ export(float) var changeTime = 3.0
 func _ready():
 	$Timer.start(changeTime)
 
-
 func _process(delta: float) -> void:
 	# Sets a global ball position.
 	Global.ball_position = global_position
