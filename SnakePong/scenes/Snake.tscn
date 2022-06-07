@@ -11,9 +11,6 @@
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-head1.png" type="Texture" id=9]
 [ext_resource path="res://scenes/TailSegment.tscn" type="PackedScene" id=10]
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 9.0
-
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 2 ) ],
@@ -22,6 +19,9 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 9.0
+
 [node name="Snake" type="Node2D" groups=["snake"]]
 script = ExtResource( 1 )
 tail = ExtResource( 10 )
@@ -29,15 +29,17 @@ tail = ExtResource( 10 )
 [node name="Head" type="Area2D" parent="."]
 use_parent_material = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
-shape = SubResource( 3 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Head"]
 use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
+frame = 11
 playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+z_index = 1
+shape = SubResource( 3 )
 
 [node name="HitDelay" type="Timer" parent="Head"]
 wait_time = 0.5

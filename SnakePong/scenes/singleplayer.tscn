@@ -82,6 +82,7 @@ __meta__ = {
 position = Vector2( 299, 90 )
 z_index = 11
 title = "res://scenes/TitleScreen.tscn"
+speed = 210
 tail_segments = 40
 
 [node name="Walls" type="Node2D" parent="."]

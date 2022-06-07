@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 	# Fixes speed if it gets messed up in bouncing.
 	if (linear_velocity.length() > speed + 5) || (linear_velocity.length() < speed - 5):
 		linear_velocity = linear_velocity.normalized() * speed
-	print(speed, ", ", linear_velocity.length())
 
 func _on_Timer_timeout():
 	speed += deltaSpeed
