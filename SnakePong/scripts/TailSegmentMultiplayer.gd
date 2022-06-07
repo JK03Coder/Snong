@@ -31,7 +31,7 @@ func on_area_entered(area: Area2D) -> void:
 	if area.name == "Head":
 		get_parent().death()
 
-# Code for when ball "collides" with the snake cody
+
 func on_body_exited(body: Node) -> void:
 	if body.name == "Ball":
 		SfxMan.play_collisionSFX()

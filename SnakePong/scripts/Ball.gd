@@ -6,6 +6,8 @@ export(float) var changeTime = 3.0
 
 func _ready():
 	$Timer.start(changeTime)
+	var angle = rand_range(-50.0, 50.0)
+	linear_velocity = Vector2(cos(angle), sin(angle)) * speed
 
 func _process(delta: float) -> void:
 	# Sets a global ball position.
@@ -13,8 +15,9 @@ func _process(delta: float) -> void:
 	# Rotates sprite based on angle of velocity.
 	$AnimatedSprite.rotation_degrees = linear_velocity.angle() * 180 / PI
 	# Fixes speed if it gets messed up in bouncing.
-	if linear_velocity.length() > speed:
+	if (linear_velocity.length() > speed + 5) || (linear_velocity.length() < speed - 5):
 		linear_velocity = linear_velocity.normalized() * speed
+	print(speed, ", ", linear_velocity.length())
 
 func _on_Timer_timeout():
 	speed += deltaSpeed

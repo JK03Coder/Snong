@@ -11,6 +11,7 @@ export(int) var player_index: int = 0
 var turn_rate : float = 0.1
 var input_dir : Vector2 = Vector2.RIGHT
 var changed_dir : bool = false
+var moveset : Array
 
 signal game_over
 
@@ -19,6 +20,14 @@ onready var delay := $Head/Delay
 onready var sprite := $Head/AnimatedSprite
 
 func _ready():
+	match player_index:
+		0:
+			moveset = ["move_up", "move_down", "move_left", "move_right"]
+		1:
+			moveset = ["p1_up", "p1_down", "p1_left", "p1_right"]
+		2:
+			moveset = ["p2_up", "p2_down", "p2_left", "p2_right"]
+		
 	assert(tail != null, "add a scene to the export var tail")
 	delay.wait_time = 2.0
 	delay.one_shot = true
@@ -42,17 +51,17 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# if a movement key is pressed once
-	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_left"):
+	if Input.is_action_just_pressed(moveset[1]) or Input.is_action_just_pressed(moveset[0]) or Input.is_action_just_pressed(moveset[3]) or Input.is_action_just_pressed(moveset[2]):
 		# if you're moving along the x axis
 		if abs(input_dir.dot(Vector2.RIGHT)) == 1.0:
-			var strength = Vector2(0.0, Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
+			var strength = Vector2(0.0, Input.get_action_strength(moveset[1]) - Input.get_action_strength(moveset[0]))
 			# if you didn't press both at the same time change direction
 			if strength != Vector2.ZERO:
 				input_dir = strength
 				changed_dir = true
 		# if you're moving along the y axis
 		else:
-			var strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
+			var strength = Vector2(Input.get_action_strength(moveset[3]) - Input.get_action_strength(moveset[2]), 0.0)
 			# if you didn't press both at the same time change direction
 			if strength != Vector2.ZERO:
 				input_dir = strength
@@ -101,10 +110,6 @@ func remove_tail() -> void:
 		speed += deltaSpeed
 		delay.start()
 
-func on_body_exited(body: Node) -> void:
-	if body.name == "Ball":
-		SfxMan.play_collisionSFX()
-		remove_tail()
 
 func death() -> void:
 	SfxMan.play_deathsfx()
