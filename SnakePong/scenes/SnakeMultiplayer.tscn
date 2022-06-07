@@ -37,11 +37,16 @@ use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
-frame = 4
+frame = 11
 playing = true
 
-[node name="Delay" type="Timer" parent="Head"]
+[node name="HitDelay" type="Timer" parent="Head"]
 wait_time = 0.5
 one_shot = true
 
+[node name="TurnDelay" type="Timer" parent="Head"]
+wait_time = 0.075
+one_shot = true
+
 [connection signal="area_entered" from="Head" to="." method="_on_Head_area_entered"]
+[connection signal="timeout" from="Head/TurnDelay" to="." method="_on_TurnDelay_timeout"]

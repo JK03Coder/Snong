@@ -79,7 +79,7 @@ __meta__ = {
 }
 
 [node name="Snake" parent="." groups=["player1"] instance=ExtResource( 7 )]
-position = Vector2( 83, 117 )
+position = Vector2( 299, 90 )
 z_index = 11
 title = "res://scenes/TitleScreen.tscn"
 tail_segments = 40

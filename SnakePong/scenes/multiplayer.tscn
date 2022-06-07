@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/SnakeMultiplayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/multiplayer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/tileset.tres" type="TileSet" id=6]
@@ -27,6 +28,17 @@ shader_param/shift = 0.0
 shader_param/velocity = Vector2( 0.15, 0.08 )
 shader_param/fog_color = Color( 0, 0, 0, 1 )
 shader_param/noise = SubResource( 9 )
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+void fragment(){
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = vec4(1.0 - color.rgb, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 10 )
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 18.0
@@ -66,6 +78,7 @@ shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.3
 
 [node name="World" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
@@ -78,12 +91,13 @@ __meta__ = {
 }
 
 [node name="Snake1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 86, 107 )
+position = Vector2( 90, 80 )
 z_index = 11
 player_index = 1
 
 [node name="Snake2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 475, 98 )
+material = SubResource( 11 )
+position = Vector2( 678, 80 )
 z_index = 11
 player_index = 2
 

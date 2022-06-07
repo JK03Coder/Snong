@@ -9,19 +9,22 @@ export(int) var segment_gap : int = 12
 export(int) var player_index: int = 0
 
 var turn_rate : float = 0.1
-var input_dir : Vector2 = Vector2.RIGHT
+var input_dir : Vector2 = Vector2.DOWN
 var changed_dir : bool = false
+var input_strength : Vector2
+var delayed_input : bool = false
 
 signal game_over
 
 onready var head := $Head
-onready var delay := $Head/Delay
+onready var turn_delay := $Head/TurnDelay
+onready var hit_delay := $Head/HitDelay
 onready var sprite := $Head/AnimatedSprite
 
 func _ready():
 	assert(tail != null, "add a scene to the export var tail")
-	delay.wait_time = 2.0
-	delay.one_shot = true
+	hit_delay.wait_time = 2.0
+	hit_delay.one_shot = true
 	Global.num_of_segments = tail_segments
 	# add the starting tail segments
 	for i in tail_segments:
@@ -43,26 +46,37 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# if a movement key is pressed once
 	if Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_left"):
-		# if you're moving along the x axis
-		if abs(input_dir.dot(Vector2.RIGHT)) == 1.0:
-			var strength = Vector2(0.0, Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
-			# if you didn't press both at the same time change direction
-			if strength != Vector2.ZERO:
-				input_dir = strength
-				changed_dir = true
-		# if you're moving along the y axis
+		# When player turns after the turn delay
+		if turn_delay.is_stopped():
+			# if you're moving along the x axis
+			if abs(input_dir.dot(Vector2.RIGHT)) == 1.0:
+				input_strength = Vector2(0.0, Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
+				# if you didn't press both at the same time change direction
+				if input_strength != Vector2.ZERO:
+					input_dir = input_strength
+					changed_dir = true
+			# if you're moving along the y axis
+			else:
+				input_strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
+				# if you didn't press both at the same time change direction
+				if input_strength != Vector2.ZERO:
+					input_dir = input_strength
+					changed_dir = true
+			turn_delay.start()
+		# When player turns within the turn delay
 		else:
-			var strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
-			# if you didn't press both at the same time change direction
-			if strength != Vector2.ZERO:
-				input_dir = strength
-				changed_dir = true
-
+			if abs(input_dir.dot(Vector2.RIGHT)) == 1.0:
+				input_strength = Vector2(0.0, Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
+			else:
+				input_strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
+			delayed_input = true
+	
 	if changed_dir:
 		changed_dir = false
 		# if direction has changed loop through all children except the Head
 		for i in range(1, get_child_count()):
 			get_child(i).add_turn(head.position, input_dir)
+
 
 	head.position += input_dir * delta * speed
 
@@ -93,13 +107,13 @@ func add_tail() -> void:
 
 
 func remove_tail() -> void:
-	if delay.is_stopped():
+	if hit_delay.is_stopped():
 		Global.num_of_segments -= 1
 		if get_child_count() <= 1:
 			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()
 		speed += deltaSpeed
-		delay.start()
+		hit_delay.start()
 
 func on_body_exited(body: Node) -> void:
 	if body.name == "Ball":
@@ -114,3 +128,12 @@ func death() -> void:
 func _on_Head_area_entered(area: Node):
 	if area.is_in_group("death"):
 		death()
+
+# For delayed turns
+func _on_TurnDelay_timeout():
+	print(delayed_input)
+	if delayed_input:
+		if input_strength != Vector2.ZERO:
+					input_dir = input_strength
+					changed_dir = true
+		delayed_input = false
