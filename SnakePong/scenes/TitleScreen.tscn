@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/Sound/static_noise.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/UI/pixeltype/Pixeltype.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/Sprites/Arrow Sprites/arrow_anim.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://scripts/sine_movement.gd" type="Script" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -37,7 +38,7 @@ size = 80
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 28
+size = 30
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=4]
@@ -58,15 +59,55 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=2]
-size = 48
+size = 40
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 26
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "hovering"
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0.385684, 0.994585 ), 0.0, 0.134394, 0, 0, Vector2( 1, 0.00541508 ), -4.59809, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+width = 128
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 30.0
+flatness = 0.5
+gravity = Vector3( 0, 75, 0 )
+initial_velocity = 140.0
+initial_velocity_random = 0.65
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 2.5
+scale = 5.0
+scale_random = 0.25
+scale_curve = SubResource( 8 )
+color = Color( 0, 0.321569, 1, 1 )
+hue_variation = -0.06
+hue_variation_random = 0.6
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 30.0
+flatness = 0.5
+gravity = Vector3( 0, 75, 0 )
+initial_velocity = 140.0
+initial_velocity_random = 0.65
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 2.5
+scale = 5.0
+scale_random = 0.25
+scale_curve = SubResource( 8 )
+color = Color( 1, 0.117647, 0, 1 )
+hue_variation = 0.06
+hue_variation_random = 1.0
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -85,7 +126,6 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
-visible = false
 material = SubResource( 1 )
 margin_right = 768.0
 margin_bottom = 512.0
@@ -106,74 +146,101 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 184.0
-margin_top = 65.0
+margin_top = 66.0
 margin_right = 584.0
-margin_bottom = 137.0
+margin_bottom = 138.0
 custom_fonts/font = SubResource( 3 )
 text = "SNONG"
 align = 1
 
 [node name="SubtitleLabel" type="Label" parent="Labels"]
+modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 234.0
-margin_top = 159.0
+margin_top = 34.0
 margin_right = 534.0
-margin_bottom = 204.0
+margin_bottom = 79.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "SinglePlayer"
 align = 1
+
+[node name="ArrowLeft" type="AnimatedSprite" parent="Labels/SubtitleLabel"]
+position = Vector2( -4, 14 )
+frames = ExtResource( 6 )
+animation = "idle"
+script = ExtResource( 7 )
+isVert = true
+
+[node name="ArrowRight" type="AnimatedSprite" parent="Labels/SubtitleLabel"]
+position = Vector2( 304, 14 )
+frames = ExtResource( 6 )
+animation = "idle"
+flip_h = true
+script = ExtResource( 7 )
+isVert = true
 
 [node name="PressPlayer" type="AnimationPlayer" parent="Labels"]
 root_node = NodePath("../..")
 anims/Pinging = SubResource( 4 )
 
 [node name="PressLabel" type="Label" parent="Labels"]
+self_modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 84.0
-margin_top = 290.0
+margin_top = 374.0
 margin_right = 687.0
-margin_bottom = 334.0
+margin_bottom = 418.0
 custom_fonts/font = SubResource( 2 )
 text = "- Press down to start -"
 align = 1
 
 [node name="CreditsLabel" type="Label" parent="Labels"]
-margin_top = 427.0
+margin_top = 454.0
 margin_right = 768.0
-margin_bottom = 484.0
+margin_bottom = 511.0
 custom_constants/line_spacing = 0
 custom_fonts/font = SubResource( 5 )
 text = "- Game by Justin K, Justin X, Aditya B and Imre -
-
 GDG 2022 Game Jam 2 - \"Classic with a Twist\""
 align = 1
 
-[node name="ArrowLeft" type="AnimatedSprite" parent="Labels"]
-position = Vector2( 230, 175 )
-frames = ExtResource( 6 )
-animation = "hit"
+[node name="Particles" type="Node2D" parent="."]
 
-[node name="ArrowRight" type="AnimatedSprite" parent="Labels"]
-position = Vector2( 538, 175 )
-frames = ExtResource( 6 )
-animation = "idle"
-flip_h = true
+[node name="BlueConfetti" type="Particles2D" parent="Particles"]
+position = Vector2( 503, 268 )
+z_index = 1
+emitting = false
+amount = 75
+lifetime = 3.5
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 0.56
+process_material = SubResource( 9 )
 
-[node name="ArrowPlayer" type="AnimationPlayer" parent="Labels"]
-root_node = NodePath("../ArrowRight")
-anims/hovering = SubResource( 7 )
+[node name="RedConfetti" type="Particles2D" parent="Particles"]
+position = Vector2( 265, 268 )
+z_index = 1
+emitting = false
+amount = 75
+lifetime = 3.5
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 0.56
+process_material = SubResource( 10 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = 10.0
+volume_db = 15.0
 autoplay = true
 
-[connection signal="animation_finished" from="Labels/ArrowLeft" to="." method="_on_ArrowLeft_animation_finished"]
-[connection signal="animation_finished" from="Labels/ArrowRight" to="." method="_on_ArrowRight_animation_finished"]
+[connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowLeft" to="." method="_on_ArrowLeft_animation_finished"]
+[connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowRight" to="." method="_on_ArrowRight_animation_finished"]

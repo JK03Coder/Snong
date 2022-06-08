@@ -3,9 +3,19 @@
 [resource]
 code = "shader_type canvas_item;
 
+uniform bool isDead = false;
 uniform vec4 multiply_color : hint_color = vec4(1,1,1,1);
+uniform sampler2D dissolve_texture : hint_albedo;
+uniform float dissolve_value : hint_range(0,1);
 
 void fragment(){
 	vec4 color = texture(TEXTURE, UV);
+	vec2 pixelUV = round( (UV+0.5 *TEXTURE_PIXEL_SIZE) /TEXTURE_PIXEL_SIZE ) *TEXTURE_PIXEL_SIZE; 
+	
+	if (isDead) {
+    	vec4 noise_texture = texture(dissolve_texture, UV);
+    	color.a *= floor(dissolve_value + min(1, noise_texture.x));
+	}
+	
 	COLOR = color * multiply_color;
 }"

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/192270__lebaston100__click.wav-db3ef60d48c61e0e286ff3bb893664cb.sample"
+
+[deps]
+
+source_file="res://assets/Sound/192270__lebaston100__click.wav"
+dest_files=[ "res://.import/192270__lebaston100__click.wav-db3ef60d48c61e0e286ff3bb893664cb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

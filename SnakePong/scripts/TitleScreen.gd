@@ -9,17 +9,18 @@ export(String, FILE, "*.tscn,*.scn") var multiplayer_scene
 #	High score tab, with best times for both single and multiplayer ??
 var current_screen = 0
 
-
 onready var start_delay := $start_delay
 onready var title_label := $Labels/TitleLabel
 onready var subtitle_label := $Labels/SubtitleLabel
-onready var arrow_player := $Labels/ArrowPlayer
-onready var arrowleft := $Labels/ArrowLeft
-onready var arrowright := $Labels/ArrowRight
+onready var arrowleft := $Labels/SubtitleLabel/ArrowLeft
+onready var arrowright := $Labels/SubtitleLabel/ArrowRight
 
 func _ready() -> void:
+	current_screen = Global.current_scene
 	$AudioStreamPlayer.play()
 	$Labels/PressPlayer.play("Pinging")
+	arrowleft.play("idle")
+	arrowright.play("idle")
 
 func _process(delta: float) -> void:
 	# Swaps between modes
