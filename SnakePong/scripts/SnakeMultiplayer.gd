@@ -30,11 +30,12 @@ func _ready():
 			moveset = ["p1_up", "p1_down", "p1_left", "p1_right"]
 		2:
 			moveset = ["p2_up", "p2_down", "p2_left", "p2_right"]
-		
+
 	assert(tail != null, "add a scene to the export var tail")
 	hit_delay.wait_time = 2.0
 	hit_delay.one_shot = true
 	Global.num_of_segments = tail_segments
+	head.connect("body_exited", self, "on_body_exited")
 	# add the starting tail segments
 	for i in tail_segments:
 		add_tail()
@@ -79,7 +80,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				input_strength = Vector2(Input.get_action_strength(moveset[3]) - Input.get_action_strength(moveset[2]), 0.0)
 			delayed_input = true
-	
+
 	if changed_dir:
 		changed_dir = false
 		# if direction has changed loop through all children except the Head
@@ -112,6 +113,12 @@ func add_tail() -> void:
 		tail_inst.monitoring = false
 	# finally add the new tail instance as a child of Snake
 	add_child(tail_inst)
+
+
+func on_body_exited(body: Node) -> void:
+	if body.name == "Ball":
+		SfxMan.play_collisionSFX()
+		remove_tail()
 
 
 func remove_tail() -> void:
