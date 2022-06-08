@@ -1,22 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
 [ext_resource path="res://assets/UI/upheaval/upheavtt.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/Sound/static_noise.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/UI/pixeltype/Pixeltype.ttf" type="DynamicFontData" id=5]
-
-[sub_resource type="DynamicFont" id=3]
-size = 64
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 48
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 26
-font_data = ExtResource( 5 )
+[ext_resource path="res://assets/Sprites/Arrow Sprites/arrow_anim.tres" type="SpriteFrames" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -35,7 +24,7 @@ shader_param/distort_intensity = 0.003
 shader_param/noise_opacity = 0.4
 shader_param/noise_speed = 5.0
 shader_param/static_noise_intensity = 0.06
-shader_param/aberration = 0.02
+shader_param/aberration = 0.015
 shader_param/brightness = 1.0
 shader_param/discolor = true
 shader_param/warp_amount = 0.75
@@ -43,12 +32,20 @@ shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.6
 shader_param/vignette_opacity = 0.3
 
+[sub_resource type="DynamicFont" id=3]
+size = 80
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 28
+font_data = ExtResource( 3 )
+
 [sub_resource type="Animation" id=4]
 resource_name = "Pinging"
 length = 1.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Press Label:modulate")
+tracks/0/path = NodePath("Labels/PressLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -60,52 +57,23 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 26
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "hovering"
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-main_scene = "res://scenes/singleplayer.tscn"
-
-[node name="start_delay" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
-[node name="Title Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -95.0
-margin_top = -136.0
-margin_right = 95.0
-margin_bottom = -78.0
-custom_fonts/font = SubResource( 3 )
-text = "SNONG"
-align = 1
-
-[node name="Press Label" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -293.0
-margin_top = 19.0
-margin_right = 294.0
-margin_bottom = 63.0
-custom_fonts/font = SubResource( 2 )
-text = "Press to start"
-align = 1
-
-[node name="Credits Label" type="Label" parent="."]
-margin_top = 427.0
-margin_right = 768.0
-margin_bottom = 484.0
-custom_constants/line_spacing = 0
-custom_fonts/font = SubResource( 5 )
-text = "- Game by Justin K, Justin X, Aditya B and Imre -
-
-GDG 2022 Game Jam 2 - \"Classic with a Twist\""
-align = 1
+singleplayer_scene = "res://scenes/singleplayer.tscn"
+multiplayer_scene = "res://scenes/multiplayer.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 384, 256 )
@@ -117,6 +85,7 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+visible = false
 material = SubResource( 1 )
 margin_right = 768.0
 margin_bottom = 512.0
@@ -124,10 +93,87 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="start_delay" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="Labels" type="Node2D" parent="."]
+
+[node name="TitleLabel" type="Label" parent="Labels"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 184.0
+margin_top = 65.0
+margin_right = 584.0
+margin_bottom = 137.0
+custom_fonts/font = SubResource( 3 )
+text = "SNONG"
+align = 1
+
+[node name="SubtitleLabel" type="Label" parent="Labels"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 234.0
+margin_top = 159.0
+margin_right = 534.0
+margin_bottom = 204.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "SinglePlayer"
+align = 1
+
+[node name="PressPlayer" type="AnimationPlayer" parent="Labels"]
+root_node = NodePath("../..")
+anims/Pinging = SubResource( 4 )
+
+[node name="PressLabel" type="Label" parent="Labels"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 84.0
+margin_top = 290.0
+margin_right = 687.0
+margin_bottom = 334.0
+custom_fonts/font = SubResource( 2 )
+text = "- Press down to start -"
+align = 1
+
+[node name="CreditsLabel" type="Label" parent="Labels"]
+margin_top = 427.0
+margin_right = 768.0
+margin_bottom = 484.0
+custom_constants/line_spacing = 0
+custom_fonts/font = SubResource( 5 )
+text = "- Game by Justin K, Justin X, Aditya B and Imre -
+
+GDG 2022 Game Jam 2 - \"Classic with a Twist\""
+align = 1
+
+[node name="ArrowLeft" type="AnimatedSprite" parent="Labels"]
+position = Vector2( 230, 175 )
+frames = ExtResource( 6 )
+animation = "hit"
+
+[node name="ArrowRight" type="AnimatedSprite" parent="Labels"]
+position = Vector2( 538, 175 )
+frames = ExtResource( 6 )
+animation = "idle"
+flip_h = true
+
+[node name="ArrowPlayer" type="AnimationPlayer" parent="Labels"]
+root_node = NodePath("../ArrowRight")
+anims/hovering = SubResource( 7 )
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = 10.0
 autoplay = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Pinging = SubResource( 4 )
+[connection signal="animation_finished" from="Labels/ArrowLeft" to="." method="_on_ArrowLeft_animation_finished"]
+[connection signal="animation_finished" from="Labels/ArrowRight" to="." method="_on_ArrowRight_animation_finished"]

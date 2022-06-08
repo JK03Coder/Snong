@@ -32,15 +32,7 @@ func _ready():
 
 
 func _process(delta: float) -> void:
-	# Rotation based on direction of motion
-	if input_dir == Vector2.LEFT:
-		sprite.rotation_degrees = 90.0
-	elif input_dir == Vector2.UP:
-		sprite.rotation_degrees = 180.0
-	elif input_dir == Vector2.RIGHT:
-		sprite.rotation_degrees = 270.0
-	else:
-		sprite.rotation_degrees = 0.0
+	pass
 
 
 func _physics_process(delta: float) -> void:
@@ -73,6 +65,15 @@ func _physics_process(delta: float) -> void:
 	
 	if changed_dir:
 		changed_dir = false
+		# Rotation based on direction of motion
+		if input_dir == Vector2.LEFT:
+			sprite.rotation_degrees = 90.0
+		elif input_dir == Vector2.UP:
+			sprite.rotation_degrees = 180.0
+		elif input_dir == Vector2.RIGHT:
+			sprite.rotation_degrees = 270.0
+		else:
+			sprite.rotation_degrees = 0.0
 		# if direction has changed loop through all children except the Head
 		for i in range(1, get_child_count()):
 			get_child(i).add_turn(head.position, input_dir)
@@ -123,7 +124,7 @@ func on_body_exited(body: Node) -> void:
 func death() -> void:
 	SfxMan.play_deathsfx()
 	emit_signal("game_over")
-	get_tree().change_scene("res://scenes/TitleScreen.tscn")
+
 
 func _on_Head_area_entered(area: Node):
 	if area.is_in_group("death"):

@@ -1,0 +1,11 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 multiply_color : hint_color = vec4(1,1,1,1);
+
+void fragment(){
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = color * multiply_color;
+}"

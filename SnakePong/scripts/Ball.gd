@@ -6,8 +6,8 @@ export(float) var changeTime = 3.0
 
 func _ready():
 	$Timer.start(changeTime)
-	var angle = rand_range(-50.0, 50.0)
-	linear_velocity = Vector2(cos(angle), sin(angle)) * speed
+	#var angle = float(randi()%1 - 1)*(rand_range(20.0, 40.0))
+	#linear_velocity = Vector2(cos(angle), sin(angle)) * speed
 
 func _process(delta: float) -> void:
 	# Sets a global ball position.
