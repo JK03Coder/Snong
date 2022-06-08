@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://scripts/TailSegment.gd" type="Script" id=1]
+[ext_resource path="res://scripts/TailSegmentMultiplayer.gd" type="Script" id=1]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-body1.png" type="Texture" id=2]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-body3.png" type="Texture" id=3]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-body5.png" type="Texture" id=4]
