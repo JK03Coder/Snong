@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 				current_screen = 0
 			arrowright.play("hit")
 			start_delay.start()
-	
+
 	# Changed scene to singleplayer
 	if current_screen == 0:
 		subtitle_label.text = "Singleplayer"

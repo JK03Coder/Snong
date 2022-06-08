@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Snake.gd" type="Script" id=1]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-head2.png" type="Texture" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-head6.png" type="Texture" id=8]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-head1.png" type="Texture" id=9]
 [ext_resource path="res://scenes/TailSegment.tscn" type="PackedScene" id=10]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 5.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -29,12 +32,17 @@ tail = ExtResource( 10 )
 [node name="Head" type="Area2D" parent="."]
 use_parent_material = true
 
+[node name="KinematicBody2D" type="KinematicBody2D" parent="Head"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/KinematicBody2D"]
+shape = SubResource( 4 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Head"]
 use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
-frame = 11
+frame = 9
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
