@@ -146,29 +146,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 184.0
-margin_top = 66.0
+margin_top = 38.0
 margin_right = 584.0
-margin_bottom = 138.0
+margin_bottom = 110.0
 custom_fonts/font = SubResource( 3 )
 text = "SNONG"
 align = 1
 
 [node name="SubtitleLabel" type="Label" parent="Labels"]
-modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
+self_modulate = Color( 0.831373, 0.231373, 0.886275, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 234.0
-margin_top = 34.0
+margin_top = 122.0
 margin_right = 534.0
-margin_bottom = 79.0
+margin_bottom = 167.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "SinglePlayer"
 align = 1
 
 [node name="ArrowLeft" type="AnimatedSprite" parent="Labels/SubtitleLabel"]
+modulate = Color( 0.67451, 0.67451, 0.67451, 1 )
 position = Vector2( -4, 14 )
 frames = ExtResource( 6 )
 animation = "idle"
@@ -176,6 +177,7 @@ script = ExtResource( 7 )
 isVert = true
 
 [node name="ArrowRight" type="AnimatedSprite" parent="Labels/SubtitleLabel"]
+modulate = Color( 0.67451, 0.67451, 0.67451, 1 )
 position = Vector2( 304, 14 )
 frames = ExtResource( 6 )
 animation = "idle"
@@ -205,10 +207,10 @@ align = 1
 margin_top = 454.0
 margin_right = 768.0
 margin_bottom = 511.0
-custom_constants/line_spacing = 0
+custom_constants/line_spacing = 7
 custom_fonts/font = SubResource( 5 )
-text = "- Game by Justin K, Justin X, Aditya B and Imre -
-GDG 2022 Game Jam 2 - \"Classic with a Twist\""
+text = "Game by Justin K, Aditya B, Justin X, and Imre
+GDG 2022 Jam 2 - \"Classic with a Twist\""
 align = 1
 
 [node name="Particles" type="Node2D" parent="."]

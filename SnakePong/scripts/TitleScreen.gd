@@ -21,6 +21,13 @@ func _ready() -> void:
 	$Labels/PressPlayer.play("Pinging")
 	arrowleft.play("idle")
 	arrowright.play("idle")
+	
+	if Global.p1won:
+		$Particles/RedConfetti.emitting = true
+		Global.p1won = false
+	if Global.p2won:
+		$Particles/BlueConfetti.emitting = true
+		Global.p2won = false
 
 func _process(delta: float) -> void:
 	# Swaps between modes
@@ -43,6 +50,7 @@ func _process(delta: float) -> void:
 	# Changed scene to singleplayer
 	if current_screen == 0:
 		subtitle_label.text = "Singleplayer"
+		subtitle_label.self_modulate = Color(0.34902, 0.933333, 0.32549)
 		if start_delay.is_stopped():
 			if Input.is_action_just_pressed("move_down"):
 				Global.current_scene = 0
@@ -50,6 +58,7 @@ func _process(delta: float) -> void:
 	# Changed scene to multiplayer
 	elif current_screen == 1:
 		subtitle_label.text = "Multiplayer"
+		subtitle_label.self_modulate = Color(0.831373, 0.231373, 0.886275)
 		if start_delay.is_stopped():
 			if Input.is_action_pressed("p1_down") and Input.is_action_pressed("p2_down"):
 				Global.current_scene = 1

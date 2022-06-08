@@ -173,6 +173,7 @@ position = Vector2( 224, 256 )
 shape = SubResource( 7 )
 
 [node name="SegmentCount" type="Label" parent="."]
+visible = false
 margin_left = 198.0
 margin_top = 241.0
 margin_right = 251.0
