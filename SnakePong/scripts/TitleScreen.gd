@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 	elif current_screen == 1:
 		subtitle_label.text = "Multiplayer"
 		if start_delay.is_stopped():
-			if Input.is_action_just_pressed("move_down"):
+			if Input.is_action_pressed("p1_down") and Input.is_action_pressed("p2_down"):
 				Global.current_scene = 1
 				get_tree().change_scene(multiplayer_scene)
 
