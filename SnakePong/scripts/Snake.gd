@@ -26,6 +26,7 @@ func _ready():
 	hit_delay.wait_time = 2.0
 	hit_delay.one_shot = true
 	Global.num_of_segments = tail_segments
+	head.connect("body_exited", self, "on_body_exited")
 	# add the starting tail segments
 	for i in tail_segments:
 		add_tail()
@@ -62,7 +63,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				input_strength = Vector2(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0.0)
 			delayed_input = true
-	
+
 	if changed_dir:
 		changed_dir = false
 		# Rotation based on direction of motion

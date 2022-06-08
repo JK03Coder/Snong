@@ -34,7 +34,7 @@ use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
-frame = 15
+frame = 11
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
