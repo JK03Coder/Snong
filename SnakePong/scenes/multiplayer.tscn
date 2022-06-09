@@ -175,9 +175,9 @@ shape = SubResource( 7 )
 [node name="TimerCount" type="Label" parent="."]
 self_modulate = Color( 1, 1, 1, 0.411765 )
 margin_left = 320.0
-margin_top = 160.0
+margin_top = 241.0
 margin_right = 448.0
-margin_bottom = 192.0
+margin_bottom = 273.0
 custom_fonts/font = SubResource( 6 )
 text = "00:00"
 align = 1
@@ -186,9 +186,9 @@ script = ExtResource( 12 )
 [node name="RedSegCounter" type="Label" parent="."]
 modulate = Color( 0.92549, 0.129412, 0.129412, 1 )
 margin_left = 198.0
-margin_top = 240.0
+margin_top = 242.0
 margin_right = 251.0
-margin_bottom = 268.0
+margin_bottom = 270.0
 custom_fonts/font = SubResource( 12 )
 text = "20"
 align = 1
@@ -198,9 +198,9 @@ player_id = 1
 [node name="BlueSegCounter" type="Label" parent="."]
 modulate = Color( 0.141176, 0.376471, 0.913725, 1 )
 margin_left = 518.0
-margin_top = 238.0
+margin_top = 240.0
 margin_right = 571.0
-margin_bottom = 266.0
+margin_bottom = 268.0
 custom_fonts/font = SubResource( 12 )
 text = "20"
 align = 1
@@ -217,4 +217,6 @@ autoplay = true
 mix_target = 1
 
 [connection signal="game_over" from="Snake1" to="." method="_on_Snake1_game_over"]
+[connection signal="won" from="Snake1" to="." method="_on_Snake1_won"]
 [connection signal="game_over" from="Snake2" to="." method="_on_Snake2_game_over"]
+[connection signal="won" from="Snake2" to="." method="_on_Snake2_won"]

@@ -17,6 +17,7 @@ onready var arrowright := $Labels/SubtitleLabel/ArrowRight
 onready var blue_confetti := $Particles/BlueConfetti
 onready var red_confetti := $Particles/RedConfetti
 onready var green_confetti := $Particles/GreenConfetti
+onready var win_confetti := $Particles/WinConfetti
 onready var pressplayer := $Labels/PressPlayer
 onready var panelsingle := $PanelSingleplayer
 onready var panelmulti := $PanelMultiplayer
@@ -28,6 +29,9 @@ func _ready() -> void:
 	arrowleft.play("idle")
 	arrowright.play("idle")
 	
+	if Global.won:
+		win_confetti.emitting = true
+		Global.won = false
 	if Global.p0lost:
 		green_confetti.position = Global.death_position
 		green_confetti.emitting = true

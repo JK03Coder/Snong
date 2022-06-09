@@ -17,3 +17,10 @@ func _on_Snake_game_over():
 			Global.p0_time[1] = survival_time
 	
 	get_tree().change_scene("res://scenes/TitleScreen.tscn")
+
+
+func _on_Snake_won():
+	Global.p0_time[0] = survival_time
+	Global.p0_count[1] = Global.p0_count[0]
+	if Global.p0_time[0] < Global.p0_time[1]:
+		Global.p0_time[1] = survival_time

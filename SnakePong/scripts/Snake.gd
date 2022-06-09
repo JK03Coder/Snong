@@ -15,6 +15,7 @@ var input_strength : Vector2
 var delayed_input : bool = false
 
 signal game_over
+signal won
 
 onready var head := $Head
 onready var turn_delay := $Head/TurnDelay
@@ -112,6 +113,7 @@ func remove_tail() -> void:
 	if hit_delay.is_stopped():
 		Global.p0_segments -= 1
 		if get_child_count() <= 1:
+			emit_signal("won")
 			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()
 		speed += deltaSpeed

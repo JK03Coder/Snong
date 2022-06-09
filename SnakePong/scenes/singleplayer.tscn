@@ -195,3 +195,4 @@ volume_db = -15.0
 autoplay = true
 
 [connection signal="game_over" from="Snake" to="." method="_on_Snake_game_over"]
+[connection signal="won" from="Snake" to="." method="_on_Snake_won"]

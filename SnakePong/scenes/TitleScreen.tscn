@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
@@ -168,6 +168,26 @@ scale_curve = SubResource( 8 )
 color = Color( 0.862745, 0.862745, 0.862745, 1 )
 hue_variation_random = 0.43
 
+[sub_resource type="ParticlesMaterial" id=18]
+emission_shape = 2
+emission_box_extents = Vector3( 400, 400, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+flatness = 0.6
+gravity = Vector3( 0, 50, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.65
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 2.5
+linear_accel_random = 0.18
+scale = 5.0
+scale_random = 0.25
+scale_curve = SubResource( 8 )
+color = Color( 0.678431, 0, 1, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ) ],
@@ -177,7 +197,7 @@ animations = [ {
 } ]
 
 [sub_resource type="DynamicFont" id=13]
-size = 40
+size = 35
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=14]
@@ -343,6 +363,20 @@ explosiveness = 1.0
 randomness = 0.56
 process_material = SubResource( 11 )
 
+[node name="WinConfetti" type="Particles2D" parent="Particles"]
+position = Vector2( 384, 241 )
+emitting = false
+amount = 300
+lifetime = 6.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.7
+process_material = SubResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
@@ -355,14 +389,12 @@ position = Vector2( 0, 6 )
 position = Vector2( 648, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
-frame = 6
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="PanelSingleplayer"]
 position = Vector2( 120, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
-frame = 6
 playing = true
 flip_h = true
 
@@ -386,9 +418,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 130.0
+margin_left = 138.0
 margin_top = -20.0
-margin_right = 263.0
+margin_right = 271.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 13 )
 text = "40 in"
@@ -400,9 +432,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 249.0
+margin_left = 240.0
 margin_top = -20.0
-margin_right = 380.0
+margin_right = 371.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 13 )
 text = "10:00"
@@ -429,13 +461,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 144.0
+margin_left = 147.0
 margin_top = -20.0
-margin_right = 277.0
+margin_right = 280.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 14 )
 text = "40 in"
 align = 1
+script = ExtResource( 8 )
+is_best = true
 
 [node name="Time" type="Label" parent="PanelSingleplayer/TitleLabel2"]
 anchor_left = 0.5
@@ -449,9 +483,12 @@ margin_bottom = 20.0
 custom_fonts/font = SubResource( 14 )
 text = "10:00"
 align = 1
+script = ExtResource( 9 )
+is_best = true
 
 [node name="Snoodle" type="Node2D" parent="PanelSingleplayer"]
-position = Vector2( 526, 285 )
+position = Vector2( 543, 285 )
+scale = Vector2( 0.9, 0.9 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -461,12 +498,12 @@ position = Vector2( 7, -6 )
 rotation = 1.5708
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 2
+frame = 11
 playing = true
 script = ExtResource( 7 )
 isVert = true
 amplitude = 9.0
-timespan = 2.7
+timespan = 2.6
 time_offset = -0.6
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
@@ -476,12 +513,12 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 6
+frame = 5
 playing = true
 script = ExtResource( 7 )
 isVert = true
-amplitude = 9.0
-timespan = 2.7
+amplitude = 7.0
+timespan = 2.6
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
 use_parent_material = true
@@ -490,12 +527,11 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 1
 playing = true
 script = ExtResource( 7 )
 isVert = true
-amplitude = 9.0
-timespan = 2.7
+amplitude = 7.0
+timespan = 2.6
 time_offset = 0.6
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
@@ -505,12 +541,12 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 7
+frame = 6
 playing = true
 script = ExtResource( 7 )
 isVert = true
-amplitude = 9.0
-timespan = 2.7
+amplitude = 7.0
+timespan = 2.6
 time_offset = 1.2
 
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
@@ -520,12 +556,12 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 4
+frame = 3
 playing = true
 script = ExtResource( 7 )
 isVert = true
-amplitude = 9.0
-timespan = 2.7
+amplitude = 7.0
+timespan = 2.6
 time_offset = 1.8
 
 [node name="AnimatedSprite6" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
@@ -535,12 +571,12 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 3
+frame = 2
 playing = true
 script = ExtResource( 7 )
 isVert = true
-amplitude = 9.0
-timespan = 2.7
+amplitude = 7.0
+timespan = 2.6
 time_offset = 2.4
 
 [node name="AnimatedSprite7" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
@@ -550,12 +586,12 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 7 )
 isVert = true
-amplitude = 9.0
-timespan = 2.7
+amplitude = 7.0
+timespan = 2.6
 time_offset = 3.0
 
 [node name="PanelMultiplayer" type="Node2D" parent="."]
@@ -612,9 +648,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -122.0
+margin_left = -114.0
 margin_top = 27.0
-margin_right = 11.0
+margin_right = 19.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
 text = "40 in"
@@ -628,9 +664,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -3.0
+margin_left = -12.0
 margin_top = 27.0
-margin_right = 128.0
+margin_right = 119.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
 text = "10:00"
@@ -645,9 +681,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -108.0
+margin_left = -105.0
 margin_top = 75.0
-margin_right = 25.0
+margin_right = 28.0
 margin_bottom = 115.0
 custom_fonts/font = SubResource( 14 )
 text = "40 in"
@@ -694,9 +730,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -122.0
+margin_left = -114.0
 margin_top = 27.0
-margin_right = 11.0
+margin_right = 19.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
 text = "40 in"
@@ -710,9 +746,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -3.0
+margin_left = -12.0
 margin_top = 27.0
-margin_right = 128.0
+margin_right = 119.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
 text = "10:00"
@@ -727,9 +763,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -108.0
+margin_left = -105.0
 margin_top = 75.0
-margin_right = 25.0
+margin_right = 28.0
 margin_bottom = 115.0
 custom_fonts/font = SubResource( 14 )
 text = "40 in"
@@ -761,7 +797,7 @@ modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 120, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 2
+frame = 11
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -772,7 +808,7 @@ modulate = Color( 0, 0.301961, 1, 1 )
 position = Vector2( 648, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 2
+frame = 11
 playing = true
 script = ExtResource( 7 )
 isVert = true
