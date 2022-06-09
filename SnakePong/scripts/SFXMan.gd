@@ -2,17 +2,29 @@ extends Node
 
 var collisionSFX = load("res://assets/Sound/SN_Collide.wav")
 var deathSFX = load("res://assets/Sound/SN_Death.wav")
-var coinslotSFX = load("res://assets/Sound/coin_slotted.mp3")
 
-onready var coinslotSFXtimer := $CoinSlotSFXTimer
-onready var music := $Music
+var clickSFX = load("res://assets/Sound/192270__lebaston100__click.wav")
+var growthSFX = load("res://assets/Sound/235754__elliotlp__crumple-dry-leaf-2.mp3")
+
+onready var firstFX := $FirstFX
+onready var secondFX := $SecondFX
 
 func play_collisionSFX():
-	music.stream = collisionSFX
-	music.volume_db = -11.0
-	music.play()
+	firstFX.stream = collisionSFX
+	firstFX.volume_db = -11.0
+	firstFX.play()
 
 func play_deathsfx():
-	music.stream = deathSFX
-	music.volume_db = 5.0
-	music.play()
+	firstFX.stream = deathSFX
+	firstFX.volume_db = 5.0
+	firstFX.play()
+
+func play_clicksfx():
+	secondFX.stream = clickSFX
+	secondFX.volume_db = -10.0
+	secondFX.play()
+
+func play_growthsfx():
+	secondFX.stream = growthSFX
+	secondFX.volume_db = 0.0
+	secondFX.play()

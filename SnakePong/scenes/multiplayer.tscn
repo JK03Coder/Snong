@@ -112,13 +112,13 @@ __meta__ = {
 material = SubResource( 10 )
 position = Vector2( 90, 80 )
 z_index = 11
-tail_segments = 40
+deltaSpeed = 8
 player_index = 1
 
 [node name="Snake2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 678, 80 )
 z_index = 11
-tail_segments = 40
+deltaSpeed = 8
 player_index = 2
 
 [node name="Walls" type="Node2D" parent="."]
@@ -144,7 +144,7 @@ z_index = 11
 linear_velocity = Vector2( -200, 80 )
 speed = 300.0
 deltaSpeed = 7.5
-changeTime = 7.5
+changeTime = 5.0
 
 [node name="AlternateMap" type="TileMap" parent="."]
 z_index = 10
@@ -186,9 +186,9 @@ script = ExtResource( 12 )
 [node name="RedSegCounter" type="Label" parent="."]
 modulate = Color( 0.92549, 0.129412, 0.129412, 1 )
 margin_left = 198.0
-margin_top = 243.0
+margin_top = 240.0
 margin_right = 251.0
-margin_bottom = 271.0
+margin_bottom = 268.0
 custom_fonts/font = SubResource( 12 )
 text = "20"
 align = 1
@@ -198,9 +198,9 @@ player_id = 1
 [node name="BlueSegCounter" type="Label" parent="."]
 modulate = Color( 0.141176, 0.376471, 0.913725, 1 )
 margin_left = 518.0
-margin_top = 243.0
+margin_top = 238.0
 margin_right = 571.0
-margin_bottom = 271.0
+margin_bottom = 266.0
 custom_fonts/font = SubResource( 12 )
 text = "20"
 align = 1
@@ -210,10 +210,11 @@ player_id = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
-[node name="music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -15.0
 autoplay = true
+mix_target = 1
 
 [connection signal="game_over" from="Snake1" to="." method="_on_Snake1_game_over"]
 [connection signal="game_over" from="Snake2" to="." method="_on_Snake2_game_over"]

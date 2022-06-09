@@ -46,15 +46,16 @@ func _process(delta: float) -> void:
 			if current_screen < 0:
 				current_screen = 1
 			arrowleft.play("hit")
+			SfxMan.play_clicksfx()
 			start_delay.start()
 		elif Input.is_action_just_pressed("move_right"):
 			current_screen += 1
 			if current_screen > 1:
 				current_screen = 0
-			
 			arrowright.play("hit")
+			SfxMan.play_clicksfx()
 			start_delay.start()
-	# Changed scene to singleplayer
+	# Changes scene to singleplayer on input
 	if current_screen == 0:
 		subtitle_label.text = "Singleplayer"
 		subtitle_label.self_modulate = Color(0.34902, 0.933333, 0.32549)
@@ -62,8 +63,9 @@ func _process(delta: float) -> void:
 		if start_delay.is_stopped():
 			if Input.is_action_just_pressed("move_down"):
 				Global.current_scene = 0
+				SfxMan.play_clicksfx()
 				get_tree().change_scene(singleplayer_scene)
-	# Changed scene to multiplayer
+	# Changes scene to multiplayer on input
 	elif current_screen == 1:
 		subtitle_label.text = "Multiplayer"
 		subtitle_label.self_modulate = Color(0.831373, 0.231373, 0.886275)
@@ -71,6 +73,7 @@ func _process(delta: float) -> void:
 		if start_delay.is_stopped():
 			if Input.is_action_pressed("move_down"):
 				Global.current_scene = 1
+				SfxMan.play_clicksfx()
 				get_tree().change_scene(multiplayer_scene)
 	# Changed scene to scoreboard
 

@@ -176,7 +176,7 @@ align = 1
 script = ExtResource( 11 )
 
 [node name="TimerCounter" type="Label" parent="."]
-self_modulate = Color( 1, 1, 1, 0.411765 )
+self_modulate = Color( 0.890196, 0.890196, 0.890196, 1 )
 margin_left = 529.0
 margin_top = 241.0
 margin_right = 628.0

@@ -5,5 +5,9 @@
 [node name="SfxMan" type="Node"]
 script = ExtResource( 1 )
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="FirstFX" type="AudioStreamPlayer" parent="."]
 mix_target = 1
+bus = "SFX"
+
+[node name="SecondFX" type="AudioStreamPlayer" parent="."]
+bus = "SFX"

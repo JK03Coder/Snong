@@ -16,6 +16,7 @@ var input_strength : Vector2
 var delayed_input : bool = false
 
 signal game_over
+signal won
 
 onready var head := $Head
 onready var turn_delay := $Head/TurnDelay
@@ -33,8 +34,6 @@ func _ready():
 			moveset = ["p2_up", "p2_down", "p2_left", "p2_right"]
 
 	assert(tail != null, "add a scene to the export var tail")
-	hit_delay.wait_time = 2.0
-	hit_delay.one_shot = true
 	if player_index == 1:
 		Global.p2_segments = tail_segments
 	elif player_index == 2:
@@ -138,6 +137,7 @@ func remove_tail() -> void:
 		else:
 			Global.p0_segments -= 1
 		if get_child_count() <= 1:
+			emit_signal("won")
 			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()
 		speed += deltaSpeed
@@ -164,11 +164,11 @@ func _on_TurnDelay_timeout():
 
 
 func _on_GrowthTimer_timeout():
-	if player_index == 1 and Global.p1_segments <= tail_segments:
+	if player_index == 1 and Global.p1_segments < tail_segments:
 		add_tail()
 		Global.p1_segments += 1
 		growth_timer.start()
-	elif player_index == 2 and Global.p2_segments <= tail_segments:
+	elif player_index == 2 and Global.p2_segments < tail_segments:
 		add_tail()
 		Global.p2_segments += 1
 		growth_timer.start()

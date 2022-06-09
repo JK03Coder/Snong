@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/UI/pixeltype/Pixeltype.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/Sprites/Arrow Sprites/arrow_anim.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://scripts/sine_movement.gd" type="Script" id=7]
+[ext_resource path="res://scripts/LabelScripts/ScoreLabel.gd" type="Script" id=8]
+[ext_resource path="res://scripts/LabelScripts/TimeLabel.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -142,6 +144,14 @@ scale_curve = SubResource( 8 )
 color = Color( 0.862745, 0.862745, 0.862745, 1 )
 hue_variation_random = 0.43
 
+[sub_resource type="DynamicFont" id=13]
+size = 40
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 30
+font_data = ExtResource( 3 )
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -179,9 +189,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 184.0
-margin_top = 48.0
+margin_top = 62.0
 margin_right = 584.0
-margin_bottom = 120.0
+margin_bottom = 134.0
 custom_fonts/font = SubResource( 3 )
 text = "SNONG"
 align = 1
@@ -193,9 +203,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 234.0
-margin_top = 124.0
+margin_top = 145.0
 margin_right = 534.0
-margin_bottom = 169.0
+margin_bottom = 190.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "SinglePlayer"
@@ -283,10 +293,98 @@ explosiveness = 1.0
 randomness = 0.56
 process_material = SubResource( 11 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
-mix_target = 1
+bus = "Music"
+
+[node name="PanelSingleplayer" type="Node2D" parent="."]
+
+[node name="TitleLabel1" type="Label" parent="PanelSingleplayer"]
+modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
+self_modulate = Color( 0.760784, 0.760784, 0.760784, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = 247.0
+margin_right = 185.0
+margin_bottom = 287.0
+custom_fonts/font = SubResource( 13 )
+text = "Latest:"
+align = 2
+
+[node name="Score" type="Label" parent="PanelSingleplayer/TitleLabel1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 116.0
+margin_top = -20.0
+margin_right = 249.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 13 )
+text = "40 in"
+align = 1
+script = ExtResource( 8 )
+
+[node name="Time" type="Label" parent="PanelSingleplayer/TitleLabel1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 235.0
+margin_top = -20.0
+margin_right = 366.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 13 )
+text = "10:00"
+align = 1
+script = ExtResource( 9 )
+
+[node name="TitleLabel2" type="Label" parent="PanelSingleplayer"]
+modulate = Color( 0.34902, 0.929412, 0.329412, 1 )
+self_modulate = Color( 0.701961, 0.701961, 0.701961, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = 295.0
+margin_right = 185.0
+margin_bottom = 335.0
+custom_fonts/font = SubResource( 14 )
+text = "Best:"
+align = 2
+
+[node name="Score" type="Label" parent="PanelSingleplayer/TitleLabel2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 130.0
+margin_top = -20.0
+margin_right = 263.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 14 )
+text = "40 in"
+align = 1
+
+[node name="Time" type="Label" parent="PanelSingleplayer/TitleLabel2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 221.0
+margin_top = -20.0
+margin_right = 352.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 14 )
+text = "10:00"
+align = 1
+
+[node name="PanelMultiplayer" type="Node2D" parent="."]
 
 [connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowLeft" to="." method="_on_ArrowLeft_animation_finished"]
 [connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowRight" to="." method="_on_ArrowRight_animation_finished"]
