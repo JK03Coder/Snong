@@ -35,7 +35,7 @@ func on_area_entered(area: Area2D) -> void:
 func on_body_exited(body: Node) -> void:
 	if body.name == "Ball":
 		SfxMan.play_collisionSFX()
-		get_parent().add_tail()
+		get_parent().remove_tail()
 
 
 func _physics_process(delta: float) -> void:

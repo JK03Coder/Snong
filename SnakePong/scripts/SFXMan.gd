@@ -14,5 +14,5 @@ func play_collisionSFX():
 
 func play_deathsfx():
 	music.stream = deathSFX
-	music.volume_db = 8.0
+	music.volume_db = 5.0
 	music.play()

@@ -21,6 +21,7 @@ onready var head := $Head
 onready var turn_delay := $Head/TurnDelay
 onready var hit_delay := $Head/HitDelay
 onready var sprite := $Head/AnimatedSprite
+onready var growth_timer := $Head/GrowthTimer
 
 func _ready():
 	match player_index:
@@ -34,7 +35,14 @@ func _ready():
 	assert(tail != null, "add a scene to the export var tail")
 	hit_delay.wait_time = 2.0
 	hit_delay.one_shot = true
-	Global.num_of_segments = tail_segments
+	if player_index == 1:
+		Global.p2_segments = tail_segments
+	elif player_index == 2:
+		Global.p1_segments = tail_segments
+	else:
+		Global.p0_segments = tail_segments
+	sprite.play("default")
+	
 	head.connect("body_exited", self, "on_body_exited")
 	# add the starting tail segments
 	for i in tail_segments:
@@ -86,7 +94,6 @@ func _physics_process(delta: float) -> void:
 		# if direction has changed loop through all children except the Head
 		for i in range(1, get_child_count()):
 			get_child(i).add_turn(head.position, input_dir)
-
 	head.position += input_dir * delta * speed
 
 
@@ -119,11 +126,17 @@ func on_body_exited(body: Node) -> void:
 	if body.name == "Ball":
 		SfxMan.play_collisionSFX()
 		remove_tail()
+		growth_timer.start()
 
 
 func remove_tail() -> void:
 	if hit_delay.is_stopped():
-		Global.num_of_segments -= 1
+		if player_index == 1:
+			Global.p1_segments -= 1
+		elif player_index == 2:
+			Global.p2_segments -= 1
+		else:
+			Global.p0_segments -= 1
 		if get_child_count() <= 1:
 			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()
@@ -143,9 +156,19 @@ func _on_Head_area_entered(area: Node):
 
 # For delayed turns
 func _on_TurnDelay_timeout():
-	print(delayed_input)
 	if delayed_input:
 		if input_strength != Vector2.ZERO:
 					input_dir = input_strength
 					changed_dir = true
 		delayed_input = false
+
+
+func _on_GrowthTimer_timeout():
+	if player_index == 1 and Global.p1_segments <= tail_segments:
+		add_tail()
+		Global.p1_segments += 1
+		growth_timer.start()
+	elif player_index == 2 and Global.p2_segments <= tail_segments:
+		add_tail()
+		Global.p2_segments += 1
+		growth_timer.start()

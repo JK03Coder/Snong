@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scripts/fog.tres" type="Shader" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scripts/SegmentCount.gd" type="Script" id=11]
+[ext_resource path="res://scenes/TimerCounter.gd" type="Script" id=12]
+[ext_resource path="res://scripts/multiply.tres" type="Shader" id=13]
 
 [sub_resource type="OpenSimplexNoise" id=10]
 
@@ -55,12 +57,20 @@ shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.3
 
+[sub_resource type="ShaderMaterial" id=12]
+shader = ExtResource( 13 )
+shader_param/multiply_color = Color( 1, 1, 1, 1 )
+
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 18.0
 height = 30.0
 
 [sub_resource type="DynamicFont" id=6]
 size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 34
 font_data = ExtResource( 3 )
 
 [sub_resource type="Environment" id=2]
@@ -98,6 +108,7 @@ __meta__ = {
 }
 
 [node name="Snake" parent="." instance=ExtResource( 7 )]
+material = SubResource( 12 )
 position = Vector2( 90, 80 )
 z_index = 11
 title = "res://scenes/TitleScreen.tscn"
@@ -154,6 +165,7 @@ position = Vector2( 224, 256 )
 shape = SubResource( 7 )
 
 [node name="SegmentCount" type="Label" parent="."]
+modulate = Color( 0.34902, 0.929412, 0.329412, 1 )
 margin_left = 198.0
 margin_top = 241.0
 margin_right = 251.0
@@ -163,6 +175,17 @@ text = "40"
 align = 1
 script = ExtResource( 11 )
 
+[node name="TimerCounter" type="Label" parent="."]
+self_modulate = Color( 1, 1, 1, 0.411765 )
+margin_left = 529.0
+margin_top = 241.0
+margin_right = 628.0
+margin_bottom = 276.0
+custom_fonts/font = SubResource( 11 )
+text = "00:00"
+align = 1
+script = ExtResource( 12 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
@@ -170,6 +193,5 @@ environment = SubResource( 2 )
 stream = ExtResource( 5 )
 volume_db = -15.0
 autoplay = true
-mix_target = 1
 
 [connection signal="game_over" from="Snake" to="." method="_on_Snake_game_over"]

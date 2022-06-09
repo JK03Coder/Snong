@@ -1,12 +1,12 @@
 extends Node2D
 
-var time_survived = 0
-onready var survival_timer = $SurvivalTimer
-onready var darkness_mod = $Camera2D/CanvasLayer/ColorRect
+var survival_time = 0.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _process(delta: float):
+	survival_time += delta
 
 func _on_Snake_game_over():
+	Global.p0lost = true
+	Global.death_position = $Snake.position + $Snake/Head.position
+	
 	get_tree().change_scene("res://scenes/TitleScreen.tscn")

@@ -25,7 +25,7 @@ func _ready():
 	assert(tail != null, "add a scene to the export var tail")
 	hit_delay.wait_time = 2.0
 	hit_delay.one_shot = true
-	Global.num_of_segments = tail_segments
+	Global.p0_segments = tail_segments
 	head.connect("body_exited", self, "on_body_exited")
 	# add the starting tail segments
 	for i in tail_segments:
@@ -110,7 +110,7 @@ func add_tail() -> void:
 
 func remove_tail() -> void:
 	if hit_delay.is_stopped():
-		Global.num_of_segments -= 1
+		Global.p0_segments -= 1
 		if get_child_count() <= 1:
 			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/SnakeMultiplayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/multiplayer.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/UI/upheaval/upheavtt.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/Sound/Nick Otheen - little scary movie.mp3" type="AudioStream" id=10]
 [ext_resource path="res://scripts/fog.tres" type="Shader" id=11]
+[ext_resource path="res://scenes/TimerCounter.gd" type="Script" id=12]
 
 [sub_resource type="OpenSimplexNoise" id=8]
 
@@ -55,20 +56,19 @@ shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.3
 
-[sub_resource type="NoiseTexture" id=11]
-
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 5 )
-shader_param/isDead = true
 shader_param/multiply_color = Color( 1, 0, 0, 1 )
-shader_param/dissolve_value = 1.0
-shader_param/dissolve_texture = SubResource( 11 )
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 18.0
 height = 30.0
 
 [sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=12]
 size = 30
 font_data = ExtResource( 9 )
 
@@ -112,13 +112,13 @@ __meta__ = {
 material = SubResource( 10 )
 position = Vector2( 90, 80 )
 z_index = 11
-tail_segments = 10
+tail_segments = 40
 player_index = 1
 
 [node name="Snake2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 678, 80 )
 z_index = 11
-tail_segments = 10
+tail_segments = 40
 player_index = 2
 
 [node name="Walls" type="Node2D" parent="."]
@@ -172,16 +172,40 @@ shape = SubResource( 7 )
 position = Vector2( 224, 256 )
 shape = SubResource( 7 )
 
-[node name="SegmentCount" type="Label" parent="."]
-visible = false
-margin_left = 198.0
-margin_top = 241.0
-margin_right = 251.0
-margin_bottom = 269.0
+[node name="TimerCount" type="Label" parent="."]
+self_modulate = Color( 1, 1, 1, 0.411765 )
+margin_left = 320.0
+margin_top = 160.0
+margin_right = 448.0
+margin_bottom = 192.0
 custom_fonts/font = SubResource( 6 )
-text = "40"
+text = "00:00"
+align = 1
+script = ExtResource( 12 )
+
+[node name="RedSegCounter" type="Label" parent="."]
+modulate = Color( 0.92549, 0.129412, 0.129412, 1 )
+margin_left = 198.0
+margin_top = 243.0
+margin_right = 251.0
+margin_bottom = 271.0
+custom_fonts/font = SubResource( 12 )
+text = "20"
 align = 1
 script = ExtResource( 7 )
+player_id = 1
+
+[node name="BlueSegCounter" type="Label" parent="."]
+modulate = Color( 0.141176, 0.376471, 0.913725, 1 )
+margin_left = 518.0
+margin_top = 243.0
+margin_right = 571.0
+margin_bottom = 271.0
+custom_fonts/font = SubResource( 12 )
+text = "20"
+align = 1
+script = ExtResource( 7 )
+player_id = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -190,7 +214,6 @@ environment = SubResource( 2 )
 stream = ExtResource( 10 )
 volume_db = -15.0
 autoplay = true
-mix_target = 1
 
 [connection signal="game_over" from="Snake1" to="." method="_on_Snake1_game_over"]
 [connection signal="game_over" from="Snake2" to="." method="_on_Snake2_game_over"]

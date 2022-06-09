@@ -11,7 +11,7 @@ func play_collisionSFX():
 
 func play_deathsfx():
 	$Music.stream = deathSFX
-	$Music.volume_db = 8.0
+	$Music.volume_db = 0.0
 	$Music.play()
 
 func play_coinsfx():
