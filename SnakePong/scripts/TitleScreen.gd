@@ -17,7 +17,11 @@ onready var arrowright := $Labels/SubtitleLabel/ArrowRight
 onready var blue_confetti := $Particles/BlueConfetti
 onready var red_confetti := $Particles/RedConfetti
 onready var green_confetti := $Particles/GreenConfetti
-onready var pressplayer = $Labels/PressPlayer
+onready var pressplayer := $Labels/PressPlayer
+onready var panelsingle := $PanelSingleplayer
+onready var panelmulti := $PanelMultiplayer
+
+
 
 func _ready() -> void:
 	current_screen = Global.current_scene
@@ -60,6 +64,8 @@ func _process(delta: float) -> void:
 		subtitle_label.text = "Singleplayer"
 		subtitle_label.self_modulate = Color(0.34902, 0.933333, 0.32549)
 		pressplayer.play("Pinging")
+		panelmulti.visible = false
+		panelsingle.visible = true
 		if start_delay.is_stopped():
 			if Input.is_action_just_pressed("move_down"):
 				Global.current_scene = 0
@@ -70,12 +76,13 @@ func _process(delta: float) -> void:
 		subtitle_label.text = "Multiplayer"
 		subtitle_label.self_modulate = Color(0.831373, 0.231373, 0.886275)
 		pressplayer.play("Pinging")
+		panelsingle.visible = false
+		panelmulti.visible = true
 		if start_delay.is_stopped():
 			if Input.is_action_pressed("move_down"):
 				Global.current_scene = 1
 				SfxMan.play_clicksfx()
 				get_tree().change_scene(multiplayer_scene)
-	# Changed scene to scoreboard
 
 # For when the arrow has finished doing its hit anim
 func _on_ArrowLeft_animation_finished():

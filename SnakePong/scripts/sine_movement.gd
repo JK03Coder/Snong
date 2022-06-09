@@ -4,6 +4,7 @@ export(bool) var isVert : bool = false
 export(bool) var isHorz : bool = false
 export(float) var amplitude: float = 2.5
 export(float) var timespan: float = 5.0
+export(float) var time_offset: float = 0.0
 
 var pos : Vector2 = position
 var time = 0.0
@@ -16,6 +17,6 @@ func _ready():
 func _process(delta: float):
 	time += delta
 	if isVert:
-		position.y = pos.y + amplitude * sin(-time * TAU / timespan)
+		position.y = pos.y + amplitude * sin(-(time+time_offset) * TAU / timespan)
 	if isHorz:
-		position.x = pos.x + amplitude * sin(-time * TAU / timespan)
+		position.x = pos.x + amplitude * sin(-(time+time_offset) * TAU / timespan)

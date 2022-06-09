@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
@@ -9,6 +9,30 @@
 [ext_resource path="res://scripts/sine_movement.gd" type="Script" id=7]
 [ext_resource path="res://scripts/LabelScripts/ScoreLabel.gd" type="Script" id=8]
 [ext_resource path="res://scripts/LabelScripts/TimeLabel.gd" type="Script" id=9]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman1.png" type="Texture" id=10]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman2.png" type="Texture" id=11]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman5.png" type="Texture" id=12]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman8.png" type="Texture" id=13]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head5.png" type="Texture" id=14]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman6.png" type="Texture" id=15]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman7.png" type="Texture" id=16]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head7.png" type="Texture" id=17]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head4.png" type="Texture" id=18]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head6.png" type="Texture" id=19]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head3.png" type="Texture" id=20]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head1.png" type="Texture" id=21]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head2.png" type="Texture" id=22]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-head8.png" type="Texture" id=23]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman3.png" type="Texture" id=24]
+[ext_resource path="res://assets/Sprites/Ball Sprites/pacman4.png" type="Texture" id=25]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body4.png" type="Texture" id=26]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body1.png" type="Texture" id=27]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body7.png" type="Texture" id=28]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body2.png" type="Texture" id=29]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body8.png" type="Texture" id=30]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body3.png" type="Texture" id=31]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body5.png" type="Texture" id=32]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake-body6.png" type="Texture" id=33]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -36,7 +60,7 @@ shader_param/vignette_intensity = 0.6
 shader_param/vignette_opacity = 0.3
 
 [sub_resource type="DynamicFont" id=3]
-size = 80
+size = 100
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=6]
@@ -144,6 +168,14 @@ scale_curve = SubResource( 8 )
 color = Color( 0.862745, 0.862745, 0.862745, 1 )
 hue_variation_random = 0.43
 
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
 [sub_resource type="DynamicFont" id=13]
 size = 40
 font_data = ExtResource( 3 )
@@ -151,6 +183,22 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=14]
 size = 30
 font_data = ExtResource( 3 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 14 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 26 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 28 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "default",
+"speed": 6.0
+} ]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -188,10 +236,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 184.0
-margin_top = 62.0
-margin_right = 584.0
-margin_bottom = 134.0
+margin_left = 188.0
+margin_top = 48.0
+margin_right = 588.0
+margin_bottom = 138.0
 custom_fonts/font = SubResource( 3 )
 text = "SNONG"
 align = 1
@@ -235,22 +283,24 @@ anims/Pinging = SubResource( 4 )
 
 [node name="PressLabel" type="Label" parent="Labels"]
 modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 0.772549, 0.772549, 0.772549, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 84.0
-margin_top = 374.0
+margin_top = 361.0
 margin_right = 687.0
-margin_bottom = 418.0
+margin_bottom = 405.0
 custom_fonts/font = SubResource( 2 )
 text = "- Press down to start -"
 align = 1
 
 [node name="CreditsLabel" type="Label" parent="Labels"]
-margin_top = 454.0
+modulate = Color( 0.294118, 0.835294, 0.756863, 1 )
+margin_top = 449.0
 margin_right = 768.0
-margin_bottom = 511.0
+margin_bottom = 506.0
 custom_constants/line_spacing = 7
 custom_fonts/font = SubResource( 5 )
 text = "Game by Justin K, Aditya B, Justin X, and Imre
@@ -299,6 +349,22 @@ autoplay = true
 bus = "Music"
 
 [node name="PanelSingleplayer" type="Node2D" parent="."]
+position = Vector2( 0, 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PanelSingleplayer"]
+position = Vector2( 648, 120 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 15 )
+frame = 3
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="PanelSingleplayer"]
+position = Vector2( 120, 120 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 15 )
+frame = 3
+playing = true
+flip_h = true
 
 [node name="TitleLabel1" type="Label" parent="PanelSingleplayer"]
 modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
@@ -320,9 +386,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 116.0
+margin_left = 130.0
 margin_top = -20.0
-margin_right = 249.0
+margin_right = 263.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 13 )
 text = "40 in"
@@ -334,9 +400,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 235.0
+margin_left = 249.0
 margin_top = -20.0
-margin_right = 366.0
+margin_right = 380.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 13 )
 text = "10:00"
@@ -363,9 +429,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 130.0
+margin_left = 144.0
 margin_top = -20.0
-margin_right = 263.0
+margin_right = 277.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 14 )
 text = "40 in"
@@ -376,15 +442,339 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 221.0
+margin_left = 235.0
 margin_top = -20.0
-margin_right = 352.0
+margin_right = 366.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 14 )
 text = "10:00"
 align = 1
 
+[node name="Snoodle" type="Node2D" parent="PanelSingleplayer"]
+position = Vector2( 526, 285 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+position = Vector2( 7, -6 )
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+frames = SubResource( 16 )
+frame = 9
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 9.0
+timespan = 2.7
+time_offset = -0.6
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+use_parent_material = true
+position = Vector2( 48, -6 )
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+z_index = -1
+frames = SubResource( 17 )
+frame = 3
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 9.0
+timespan = 2.7
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+use_parent_material = true
+position = Vector2( 84, -6 )
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+z_index = -1
+frames = SubResource( 17 )
+frame = 7
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 9.0
+timespan = 2.7
+time_offset = 0.6
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+use_parent_material = true
+position = Vector2( 120, -6 )
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+z_index = -1
+frames = SubResource( 17 )
+frame = 4
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 9.0
+timespan = 2.7
+time_offset = 1.2
+
+[node name="AnimatedSprite5" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+use_parent_material = true
+position = Vector2( 156, -6 )
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+z_index = -1
+frames = SubResource( 17 )
+frame = 1
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 9.0
+timespan = 2.7
+time_offset = 1.8
+
+[node name="AnimatedSprite6" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+use_parent_material = true
+position = Vector2( 192, -6 )
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+z_index = -1
+frames = SubResource( 17 )
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 9.0
+timespan = 2.7
+time_offset = 2.4
+
+[node name="AnimatedSprite7" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+use_parent_material = true
+position = Vector2( 228, -6 )
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+z_index = -1
+frames = SubResource( 17 )
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 9.0
+timespan = 2.7
+time_offset = 3.0
+
 [node name="PanelMultiplayer" type="Node2D" parent="."]
+visible = false
+position = Vector2( 0, 6 )
+
+[node name="TitleLabel1" type="Label" parent="PanelMultiplayer"]
+modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
+self_modulate = Color( 0.760784, 0.760784, 0.760784, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = 247.0
+margin_right = 185.0
+margin_bottom = 287.0
+custom_fonts/font = SubResource( 13 )
+text = "Latest:"
+align = 2
+
+[node name="TitleLabel2" type="Label" parent="PanelMultiplayer"]
+modulate = Color( 0.831373, 0.231373, 0.886275, 1 )
+self_modulate = Color( 0.792157, 0.792157, 0.792157, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = 295.0
+margin_right = 185.0
+margin_bottom = 335.0
+custom_fonts/font = SubResource( 14 )
+text = "Best:"
+align = 2
+
+[node name="SubjectLabel1" type="Label" parent="PanelMultiplayer"]
+self_modulate = Color( 0.909804, 0.101961, 0.101961, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 209.0
+margin_top = 200.0
+margin_right = 437.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 13 )
+text = "Left"
+align = 1
+
+[node name="Score1" type="Label" parent="PanelMultiplayer/SubjectLabel1"]
+modulate = Color( 0.847059, 0.568627, 0.568627, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -122.0
+margin_top = 27.0
+margin_right = 11.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 13 )
+text = "40 in"
+align = 1
+script = ExtResource( 8 )
+player_id = 1
+
+[node name="Time1" type="Label" parent="PanelMultiplayer/SubjectLabel1"]
+modulate = Color( 0.847059, 0.568627, 0.568627, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -3.0
+margin_top = 27.0
+margin_right = 128.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 13 )
+text = "10:00"
+align = 1
+script = ExtResource( 9 )
+player_id = 1
+
+[node name="Score2" type="Label" parent="PanelMultiplayer/SubjectLabel1"]
+modulate = Color( 0.909804, 0.101961, 0.101961, 1 )
+self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -108.0
+margin_top = 75.0
+margin_right = 25.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 14 )
+text = "40 in"
+align = 1
+script = ExtResource( 8 )
+player_id = 1
+is_best = true
+
+[node name="Time2" type="Label" parent="PanelMultiplayer/SubjectLabel1"]
+modulate = Color( 0.909804, 0.101961, 0.101961, 1 )
+self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -17.0
+margin_top = 75.0
+margin_right = 114.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 14 )
+text = "10:00"
+align = 1
+script = ExtResource( 9 )
+player_id = 1
+is_best = true
+
+[node name="SubjectLabel2" type="Label" parent="PanelMultiplayer"]
+self_modulate = Color( 0, 0.301961, 1, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 464.0
+margin_top = 200.0
+margin_right = 692.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 13 )
+text = "right"
+align = 1
+
+[node name="Score1" type="Label" parent="PanelMultiplayer/SubjectLabel2"]
+modulate = Color( 0.623529, 0.745098, 0.878431, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -122.0
+margin_top = 27.0
+margin_right = 11.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 13 )
+text = "40 in"
+align = 1
+script = ExtResource( 8 )
+player_id = 2
+
+[node name="Time1" type="Label" parent="PanelMultiplayer/SubjectLabel2"]
+modulate = Color( 0.623529, 0.745098, 0.878431, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -3.0
+margin_top = 27.0
+margin_right = 128.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 13 )
+text = "10:00"
+align = 1
+script = ExtResource( 9 )
+player_id = 2
+
+[node name="Score2" type="Label" parent="PanelMultiplayer/SubjectLabel2"]
+modulate = Color( 0, 0.301961, 1, 1 )
+self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -108.0
+margin_top = 75.0
+margin_right = 25.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 14 )
+text = "40 in"
+align = 1
+script = ExtResource( 8 )
+player_id = 2
+is_best = true
+
+[node name="Time2" type="Label" parent="PanelMultiplayer/SubjectLabel2"]
+modulate = Color( 0, 0.301961, 1, 1 )
+self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -17.0
+margin_top = 75.0
+margin_right = 114.0
+margin_bottom = 115.0
+custom_fonts/font = SubResource( 14 )
+text = "10:00"
+align = 1
+script = ExtResource( 9 )
+player_id = 2
+is_best = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="PanelMultiplayer"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 120, 111 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 16 )
+frame = 10
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 15.0
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="PanelMultiplayer"]
+modulate = Color( 0, 0.301961, 1, 1 )
+position = Vector2( 648, 111 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 16 )
+frame = 10
+playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 15.0
 
 [connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowLeft" to="." method="_on_ArrowLeft_animation_finished"]
 [connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowRight" to="." method="_on_ArrowRight_animation_finished"]

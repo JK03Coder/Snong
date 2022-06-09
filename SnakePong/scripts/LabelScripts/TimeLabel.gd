@@ -1,7 +1,7 @@
 extends Label
 
 export(int) var player_id: int = 0
-export(int) var is_best: int = 0
+export(bool) var is_best: bool = false
 var time = 0
 var mins : int = 0
 var secs : int = 0
