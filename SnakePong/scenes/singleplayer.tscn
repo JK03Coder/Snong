@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
 [ext_resource path="res://assets/UI/upheaval/upheavtt.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/tileset.tres" type="TileSet" id=4]
-[ext_resource path="res://assets/Sound/Nick Otheen - little scary movie.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/Sound/HoliznaCC0 - Final Level.mp3" type="AudioStream" id=5]
 [ext_resource path="res://scripts/singleplayer.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Snake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Paddle.tscn" type="PackedScene" id=8]
@@ -83,7 +83,7 @@ glow_bloom = 0.1
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
-init_segments = 53
+init_segments = 33
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
@@ -143,7 +143,7 @@ z_index = 11
 linear_velocity = Vector2( 140, 100 )
 speed = 260.0
 deltaSpeed = 7.0
-changeTime = 8.0
+changeTime = 5.0
 
 [node name="Paddle" parent="." instance=ExtResource( 8 )]
 position = Vector2( 728, 243 )
@@ -206,7 +206,7 @@ environment = SubResource( 2 )
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -15.0
+volume_db = -3.0
 autoplay = true
 
 [connection signal="game_over" from="Snake" to="." method="_on_Snake_game_over"]
