@@ -366,7 +366,7 @@ process_material = SubResource( 11 )
 [node name="WinConfetti" type="Particles2D" parent="Particles"]
 position = Vector2( 384, 241 )
 emitting = false
-amount = 300
+amount = 400
 lifetime = 6.0
 one_shot = true
 speed_scale = 2.0
@@ -389,14 +389,22 @@ position = Vector2( 0, 6 )
 position = Vector2( 648, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
+frame = 5
 playing = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 15.0
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="PanelSingleplayer"]
 position = Vector2( 120, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
+frame = 5
 playing = true
 flip_h = true
+script = ExtResource( 7 )
+isVert = true
+amplitude = 15.0
 
 [node name="TitleLabel1" type="Label" parent="PanelSingleplayer"]
 modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
@@ -498,10 +506,9 @@ position = Vector2( 7, -6 )
 rotation = 1.5708
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 11
+frame = 15
 playing = true
 script = ExtResource( 7 )
-isVert = true
 amplitude = 9.0
 timespan = 2.6
 time_offset = -0.6
@@ -513,10 +520,9 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 5
+frame = 3
 playing = true
 script = ExtResource( 7 )
-isVert = true
 amplitude = 7.0
 timespan = 2.6
 
@@ -527,9 +533,9 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
+frame = 6
 playing = true
 script = ExtResource( 7 )
-isVert = true
 amplitude = 7.0
 timespan = 2.6
 time_offset = 0.6
@@ -541,10 +547,9 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 6
+frame = 4
 playing = true
 script = ExtResource( 7 )
-isVert = true
 amplitude = 7.0
 timespan = 2.6
 time_offset = 1.2
@@ -556,10 +561,9 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 3
+frame = 1
 playing = true
 script = ExtResource( 7 )
-isVert = true
 amplitude = 7.0
 timespan = 2.6
 time_offset = 1.8
@@ -571,10 +575,8 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 2
 playing = true
 script = ExtResource( 7 )
-isVert = true
 amplitude = 7.0
 timespan = 2.6
 time_offset = 2.4
@@ -586,10 +588,9 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 1
+frame = 7
 playing = true
 script = ExtResource( 7 )
-isVert = true
 amplitude = 7.0
 timespan = 2.6
 time_offset = 3.0
@@ -599,8 +600,8 @@ visible = false
 position = Vector2( 0, 6 )
 
 [node name="TitleLabel1" type="Label" parent="PanelMultiplayer"]
-modulate = Color( 0.796078, 0.796078, 0.796078, 1 )
-self_modulate = Color( 0.760784, 0.760784, 0.760784, 1 )
+modulate = Color( 0.976471, 0.713726, 1, 1 )
+self_modulate = Color( 0.847059, 0.847059, 0.847059, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -614,8 +615,8 @@ text = "Latest:"
 align = 2
 
 [node name="TitleLabel2" type="Label" parent="PanelMultiplayer"]
-modulate = Color( 0.831373, 0.231373, 0.886275, 1 )
-self_modulate = Color( 0.792157, 0.792157, 0.792157, 1 )
+modulate = Color( 0.8, 0.145098, 0.984314, 1 )
+self_modulate = Color( 0.945098, 0.784314, 0.784314, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -629,7 +630,7 @@ text = "Best:"
 align = 2
 
 [node name="SubjectLabel1" type="Label" parent="PanelMultiplayer"]
-self_modulate = Color( 0.909804, 0.101961, 0.101961, 1 )
+self_modulate = Color( 0.996078, 0.0901961, 0.0901961, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -675,8 +676,7 @@ script = ExtResource( 9 )
 player_id = 1
 
 [node name="Score2" type="Label" parent="PanelMultiplayer/SubjectLabel1"]
-modulate = Color( 0.909804, 0.101961, 0.101961, 1 )
-self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+self_modulate = Color( 0.996078, 0.0901961, 0.0901961, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -693,8 +693,7 @@ player_id = 1
 is_best = true
 
 [node name="Time2" type="Label" parent="PanelMultiplayer/SubjectLabel1"]
-modulate = Color( 0.909804, 0.101961, 0.101961, 1 )
-self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+self_modulate = Color( 0.996078, 0.0901961, 0.0901961, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -711,7 +710,7 @@ player_id = 1
 is_best = true
 
 [node name="SubjectLabel2" type="Label" parent="PanelMultiplayer"]
-self_modulate = Color( 0, 0.301961, 1, 1 )
+self_modulate = Color( 0, 0.513726, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -757,8 +756,7 @@ script = ExtResource( 9 )
 player_id = 2
 
 [node name="Score2" type="Label" parent="PanelMultiplayer/SubjectLabel2"]
-modulate = Color( 0, 0.301961, 1, 1 )
-self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+self_modulate = Color( 0, 0.513726, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -775,8 +773,7 @@ player_id = 2
 is_best = true
 
 [node name="Time2" type="Label" parent="PanelMultiplayer/SubjectLabel2"]
-modulate = Color( 0, 0.301961, 1, 1 )
-self_modulate = Color( 0.835294, 0.835294, 0.835294, 1 )
+self_modulate = Color( 0, 0.513726, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -797,7 +794,7 @@ modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 120, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 11
+frame = 15
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -808,7 +805,7 @@ modulate = Color( 0, 0.301961, 1, 1 )
 position = Vector2( 648, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 11
+frame = 15
 playing = true
 script = ExtResource( 7 )
 isVert = true
