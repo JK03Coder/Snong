@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/SnakeMultiplayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/multiplayer.gd" type="Script" id=2]
@@ -72,12 +72,17 @@ font_data = ExtResource( 9 )
 size = 30
 font_data = ExtResource( 9 )
 
+[sub_resource type="DynamicFont" id=13]
+size = 20
+font_data = ExtResource( 9 )
+
 [sub_resource type="Environment" id=2]
 glow_enabled = true
 glow_bloom = 0.1
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
+init_segments = 20
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
@@ -118,6 +123,7 @@ player_index = 1
 [node name="Snake2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 678, 80 )
 z_index = 11
+speed = 210
 deltaSpeed = 8
 player_index = 2
 
@@ -142,9 +148,9 @@ rotation = 1.5708
 position = Vector2( 384, 257 )
 z_index = 11
 linear_velocity = Vector2( -200, 80 )
-speed = 300.0
+speed = 260.0
 deltaSpeed = 7.5
-changeTime = 5.0
+changeTime = 6.0
 
 [node name="AlternateMap" type="TileMap" parent="."]
 z_index = 10
@@ -173,7 +179,7 @@ position = Vector2( 224, 256 )
 shape = SubResource( 7 )
 
 [node name="TimerCount" type="Label" parent="."]
-self_modulate = Color( 1, 1, 1, 0.411765 )
+self_modulate = Color( 0.572549, 0.572549, 0.572549, 1 )
 margin_left = 320.0
 margin_top = 241.0
 margin_right = 448.0
@@ -186,11 +192,11 @@ script = ExtResource( 12 )
 [node name="RedSegCounter" type="Label" parent="."]
 modulate = Color( 0.92549, 0.129412, 0.129412, 1 )
 margin_left = 198.0
-margin_top = 242.0
+margin_top = 225.0
 margin_right = 251.0
-margin_bottom = 270.0
+margin_bottom = 253.0
 custom_fonts/font = SubResource( 12 )
-text = "20"
+text = "-"
 align = 1
 script = ExtResource( 7 )
 player_id = 1
@@ -198,14 +204,36 @@ player_id = 1
 [node name="BlueSegCounter" type="Label" parent="."]
 modulate = Color( 0.141176, 0.376471, 0.913725, 1 )
 margin_left = 518.0
-margin_top = 240.0
+margin_top = 223.0
 margin_right = 571.0
-margin_bottom = 268.0
+margin_bottom = 251.0
 custom_fonts/font = SubResource( 12 )
-text = "20"
+text = "-"
 align = 1
 script = ExtResource( 7 )
 player_id = 2
+
+[node name="RedSegCounter2" type="Label" parent="."]
+modulate = Color( 0.92549, 0.129412, 0.129412, 1 )
+self_modulate = Color( 0.403922, 0.403922, 0.403922, 1 )
+margin_left = 198.0
+margin_top = 256.0
+margin_right = 251.0
+margin_bottom = 284.0
+custom_fonts/font = SubResource( 13 )
+text = "to go"
+align = 1
+
+[node name="BlueSegCounter2" type="Label" parent="."]
+modulate = Color( 0.141176, 0.376471, 0.913725, 1 )
+self_modulate = Color( 0.419608, 0.419608, 0.419608, 1 )
+margin_left = 518.0
+margin_top = 254.0
+margin_right = 571.0
+margin_bottom = 282.0
+custom_fonts/font = SubResource( 13 )
+text = "to go"
+align = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )

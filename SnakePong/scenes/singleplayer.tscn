@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/fog.tres" type="Shader" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
@@ -69,6 +69,10 @@ height = 30.0
 size = 30
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=13]
+size = 20
+font_data = ExtResource( 3 )
+
 [sub_resource type="DynamicFont" id=11]
 size = 34
 font_data = ExtResource( 3 )
@@ -79,6 +83,7 @@ glow_bloom = 0.1
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
+init_segments = 53
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
@@ -113,7 +118,7 @@ position = Vector2( 90, 80 )
 z_index = 11
 title = "res://scenes/TitleScreen.tscn"
 speed = 210
-tail_segments = 40
+tail_segments = 35
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -167,16 +172,26 @@ shape = SubResource( 7 )
 [node name="SegmentCount" type="Label" parent="."]
 modulate = Color( 0.34902, 0.929412, 0.329412, 1 )
 margin_left = 198.0
-margin_top = 241.0
+margin_top = 226.0
 margin_right = 251.0
-margin_bottom = 269.0
+margin_bottom = 254.0
 custom_fonts/font = SubResource( 6 )
-text = "40"
+text = "-"
 align = 1
 script = ExtResource( 11 )
 
+[node name="SegmentCount2" type="Label" parent="."]
+modulate = Color( 0.14902, 0.25098, 0.145098, 1 )
+margin_left = 197.0
+margin_top = 259.0
+margin_right = 251.0
+margin_bottom = 287.0
+custom_fonts/font = SubResource( 13 )
+text = "To go"
+align = 1
+
 [node name="TimerCounter" type="Label" parent="."]
-self_modulate = Color( 0.890196, 0.890196, 0.890196, 1 )
+self_modulate = Color( 0.572549, 0.572549, 0.572549, 1 )
 margin_left = 529.0
 margin_top = 241.0
 margin_right = 628.0
