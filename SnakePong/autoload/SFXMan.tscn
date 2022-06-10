@@ -11,3 +11,5 @@ bus = "SFX"
 
 [node name="SecondFX" type="AudioStreamPlayer" parent="."]
 bus = "SFX"
+
+[node name="DeathFX" type="AudioStreamPlayer" parent="."]

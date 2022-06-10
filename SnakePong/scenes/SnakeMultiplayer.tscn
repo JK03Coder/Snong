@@ -19,9 +19,6 @@ shader_param/multiply_color = Color( 0, 0.301961, 1, 1 )
 [sub_resource type="CircleShape2D" id=6]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 9.0
-
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 9 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
@@ -29,6 +26,9 @@ animations = [ {
 "name": "default",
 "speed": 8.0
 } ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 8.0
 
 [node name="Snake" type="Node2D" groups=["snake"]]
 material = SubResource( 5 )
@@ -43,21 +43,22 @@ use_parent_material = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head/KinematicBody2D"]
 shape = SubResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
-shape = SubResource( 3 )
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Head"]
 use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+z_index = 1
+shape = SubResource( 3 )
+
 [node name="HitDelay" type="Timer" parent="Head"]
 wait_time = 1.75
 one_shot = true
 
 [node name="TurnDelay" type="Timer" parent="Head"]
-wait_time = 0.075
+wait_time = 0.06
 one_shot = true
 
 [node name="GrowthTimer" type="Timer" parent="Head"]

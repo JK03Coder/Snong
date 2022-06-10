@@ -8,6 +8,7 @@ var growthSFX = load("res://assets/Sound/235754__elliotlp__crumple-dry-leaf-2.mp
 
 onready var firstFX := $FirstFX
 onready var secondFX := $SecondFX
+onready var deathFX := $DeathFX
 
 func play_collisionSFX():
 	firstFX.stream = collisionSFX
@@ -15,9 +16,9 @@ func play_collisionSFX():
 	firstFX.play()
 
 func play_deathsfx():
-	firstFX.stream = deathSFX
-	firstFX.volume_db = 5.0
-	firstFX.play()
+	deathFX.stream = deathSFX
+	deathFX.volume_db = 5.0
+	deathFX.play()
 
 func play_clicksfx():
 	secondFX.stream = clickSFX

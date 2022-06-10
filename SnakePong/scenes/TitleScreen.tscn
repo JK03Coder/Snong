@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/monitoreffect.tres" type="Shader" id=2]
@@ -33,6 +33,8 @@
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-body3.png" type="Texture" id=31]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-body5.png" type="Texture" id=32]
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake-body6.png" type="Texture" id=33]
+[ext_resource path="res://logo_32.png" type="Texture" id=34]
+[ext_resource path="res://gdg_logo.png" type="Texture" id=35]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -66,6 +68,10 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=6]
 size = 30
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 25
+font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=12]
 resource_name = "Hidden"
@@ -103,10 +109,6 @@ tracks/0/keys = {
 [sub_resource type="DynamicFont" id=2]
 size = 48
 font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 26
-font_data = ExtResource( 5 )
 
 [sub_resource type="Curve" id=7]
 _data = [ Vector2( 0.385684, 0.994585 ), 0.0, 0.134394, 0, 0, Vector2( 1, 0.00541508 ), -4.59809, 0.0, 0, 0 ]
@@ -224,6 +226,9 @@ animations = [ {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 singleplayer_scene = "res://scenes/singleplayer.tscn"
 multiplayer_scene = "res://scenes/multiplayer.tscn"
 
@@ -271,13 +276,25 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 234.0
-margin_top = 145.0
+margin_top = 139.0
 margin_right = 534.0
-margin_bottom = 190.0
+margin_bottom = 184.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "SinglePlayer"
 align = 1
+
+[node name="MotiveLabel" type="Label" parent="Labels/SubtitleLabel"]
+modulate = Color( 0.294118, 0.835294, 0.756863, 1 )
+margin_left = -234.0
+margin_top = 15.0
+margin_right = 534.0
+margin_bottom = 72.0
+custom_constants/line_spacing = 7
+custom_fonts/font = SubResource( 5 )
+text = "Get eaten alive."
+align = 1
+valign = 1
 
 [node name="ArrowLeft" type="AnimatedSprite" parent="Labels/SubtitleLabel"]
 modulate = Color( 0.67451, 0.67451, 0.67451, 1 )
@@ -318,14 +335,27 @@ align = 1
 
 [node name="CreditsLabel" type="Label" parent="Labels"]
 modulate = Color( 0.294118, 0.835294, 0.756863, 1 )
-margin_top = 443.0
+margin_top = 442.0
 margin_right = 768.0
-margin_bottom = 500.0
+margin_bottom = 499.0
 custom_constants/line_spacing = 7
 custom_fonts/font = SubResource( 5 )
-text = "Game by Justin K, Aditya B, Justin X, and Imre.        For GDG 2022 Jam 2."
+text = "Game by Justin K, Aditya B, Justin X, and Imre.       For GDG 2022 Jam 2."
 align = 1
 valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GdgLogo" type="Sprite" parent="Labels/CreditsLabel"]
+position = Vector2( 690, 24 )
+scale = Vector2( 1.24, 1.24 )
+texture = ExtResource( 35 )
+
+[node name="Logo32" type="Sprite" parent="Labels/CreditsLabel"]
+position = Vector2( 78, 24 )
+scale = Vector2( 1.24, 1.24 )
+texture = ExtResource( 34 )
 
 [node name="Particles" type="Node2D" parent="."]
 z_index = -1
@@ -383,13 +413,14 @@ autoplay = true
 bus = "Music"
 
 [node name="PanelSingleplayer" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PanelSingleplayer"]
 position = Vector2( 648, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
-frame = 5
+frame = 1
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -399,7 +430,7 @@ amplitude = 15.0
 position = Vector2( 120, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
-frame = 5
+frame = 1
 playing = true
 flip_h = true
 script = ExtResource( 7 )
@@ -426,13 +457,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 138.0
+margin_left = 124.0
 margin_top = -20.0
-margin_right = 271.0
+margin_right = 256.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 13 )
-text = "40 in"
-align = 1
+text = "999 in"
+align = 2
 script = ExtResource( 8 )
 
 [node name="Time" type="Label" parent="PanelSingleplayer/TitleLabel1"]
@@ -440,13 +471,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 240.0
+margin_left = 272.0
 margin_top = -20.0
-margin_right = 371.0
+margin_right = 403.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 13 )
 text = "10:00"
-align = 1
 script = ExtResource( 9 )
 
 [node name="TitleLabel2" type="Label" parent="PanelSingleplayer"]
@@ -456,10 +486,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -43.0
-margin_top = 295.0
-margin_right = 185.0
-margin_bottom = 335.0
+margin_left = -45.0
+margin_top = 291.0
+margin_right = 183.0
+margin_bottom = 331.0
 custom_fonts/font = SubResource( 14 )
 text = "Best:"
 align = 2
@@ -469,13 +499,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 147.0
-margin_top = -20.0
-margin_right = 280.0
-margin_bottom = 20.0
+margin_left = 124.0
+margin_top = -19.0
+margin_right = 258.0
+margin_bottom = 21.0
 custom_fonts/font = SubResource( 14 )
-text = "40 in"
-align = 1
+text = "999 in"
+align = 2
 script = ExtResource( 8 )
 is_best = true
 
@@ -484,13 +514,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 235.0
-margin_top = -20.0
-margin_right = 366.0
-margin_bottom = 20.0
+margin_left = 273.0
+margin_top = -19.0
+margin_right = 404.0
+margin_bottom = 21.0
 custom_fonts/font = SubResource( 14 )
 text = "10:00"
-align = 1
 script = ExtResource( 9 )
 is_best = true
 
@@ -506,7 +535,7 @@ position = Vector2( 7, -6 )
 rotation = 1.5708
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 15
+frame = 7
 playing = true
 script = ExtResource( 7 )
 amplitude = 9.0
@@ -520,7 +549,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 3
+frame = 4
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -533,7 +562,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 6
+frame = 7
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -547,7 +576,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 4
+frame = 5
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -561,7 +590,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 1
+frame = 2
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -575,6 +604,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
+frame = 1
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -588,7 +618,6 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-frame = 7
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -596,7 +625,6 @@ timespan = 2.6
 time_offset = 3.0
 
 [node name="PanelMultiplayer" type="Node2D" parent="."]
-visible = false
 position = Vector2( 0, 6 )
 
 [node name="TitleLabel1" type="Label" parent="PanelMultiplayer"]
@@ -621,10 +649,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -43.0
-margin_top = 295.0
-margin_right = 185.0
-margin_bottom = 335.0
+margin_left = -45.0
+margin_top = 291.0
+margin_right = 183.0
+margin_bottom = 331.0
 custom_fonts/font = SubResource( 14 )
 text = "Best:"
 align = 2
@@ -649,13 +677,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -114.0
+margin_left = -129.0
 margin_top = 27.0
-margin_right = 19.0
+margin_right = 4.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
-text = "40 in"
-align = 1
+text = "999 in"
+align = 2
 script = ExtResource( 8 )
 player_id = 1
 
@@ -665,13 +693,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -12.0
+margin_left = 20.0
 margin_top = 27.0
-margin_right = 119.0
+margin_right = 151.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
 text = "10:00"
-align = 1
 script = ExtResource( 9 )
 player_id = 1
 
@@ -681,13 +708,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -105.0
-margin_top = 75.0
-margin_right = 28.0
-margin_bottom = 115.0
+margin_left = -129.0
+margin_top = 72.0
+margin_right = 4.0
+margin_bottom = 112.0
 custom_fonts/font = SubResource( 14 )
 text = "40 in"
-align = 1
+align = 2
 script = ExtResource( 8 )
 player_id = 1
 is_best = true
@@ -698,13 +725,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -17.0
-margin_top = 75.0
-margin_right = 114.0
-margin_bottom = 115.0
+margin_left = 19.0
+margin_top = 72.0
+margin_right = 150.0
+margin_bottom = 112.0
 custom_fonts/font = SubResource( 14 )
 text = "10:00"
-align = 1
 script = ExtResource( 9 )
 player_id = 1
 is_best = true
@@ -729,13 +755,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -114.0
+margin_left = -128.0
 margin_top = 27.0
-margin_right = 19.0
+margin_right = 5.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
 text = "40 in"
-align = 1
+align = 2
 script = ExtResource( 8 )
 player_id = 2
 
@@ -745,13 +771,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -12.0
+margin_left = 18.0
 margin_top = 27.0
-margin_right = 119.0
+margin_right = 149.0
 margin_bottom = 67.0
 custom_fonts/font = SubResource( 13 )
 text = "10:00"
-align = 1
 script = ExtResource( 9 )
 player_id = 2
 
@@ -761,13 +786,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -105.0
-margin_top = 75.0
-margin_right = 28.0
-margin_bottom = 115.0
+margin_left = -129.0
+margin_top = 72.0
+margin_right = 4.0
+margin_bottom = 112.0
 custom_fonts/font = SubResource( 14 )
 text = "40 in"
-align = 1
+align = 2
 script = ExtResource( 8 )
 player_id = 2
 is_best = true
@@ -778,13 +803,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -17.0
-margin_top = 75.0
-margin_right = 114.0
-margin_bottom = 115.0
+margin_left = 19.0
+margin_top = 72.0
+margin_right = 150.0
+margin_bottom = 112.0
 custom_fonts/font = SubResource( 14 )
 text = "10:00"
-align = 1
 script = ExtResource( 9 )
 player_id = 2
 is_best = true
@@ -794,7 +818,7 @@ modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 120, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 15
+frame = 7
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -805,7 +829,7 @@ modulate = Color( 0, 0.301961, 1, 1 )
 position = Vector2( 648, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 15
+frame = 7
 playing = true
 script = ExtResource( 7 )
 isVert = true

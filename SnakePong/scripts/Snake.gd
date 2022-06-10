@@ -5,6 +5,7 @@ export(PackedScene) var tail
 export(int) var speed = 200
 export(int) var deltaSpeed = 5
 export(int, 0, 50) var tail_segments = 20
+export(int, 0, 50) var win_segments = 1
 export(int) var segment_gap : int = 12
 export(int) var player_index: int = 0
 
@@ -23,10 +24,10 @@ onready var hit_delay := $Head/HitDelay
 onready var sprite := $Head/AnimatedSprite
 
 func _ready():
+	tail_segments = get_parent().init_segments
 	assert(tail != null, "add a scene to the export var tail")
-	hit_delay.wait_time = 2.0
-	hit_delay.one_shot = true
 	Global.p0_segments = tail_segments
+	win_segments = Global.win_segments_single
 	head.connect("body_exited", self, "on_body_exited")
 	# add the starting tail segments
 	for i in tail_segments:
@@ -112,9 +113,8 @@ func add_tail() -> void:
 func remove_tail() -> void:
 	if hit_delay.is_stopped():
 		Global.p0_segments -= 1
-		if get_child_count() <= 1:
+		if get_child_count() <= win_segments+2:
 			emit_signal("won")
-			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()
 		speed += deltaSpeed
 		hit_delay.start()
@@ -135,7 +135,6 @@ func _on_Head_area_entered(area: Node):
 
 # For delayed turns
 func _on_TurnDelay_timeout():
-	print(delayed_input)
 	if delayed_input:
 		if input_strength != Vector2.ZERO:
 					input_dir = input_strength

@@ -23,7 +23,6 @@ onready var panelsingle := $PanelSingleplayer
 onready var panelmulti := $PanelMultiplayer
 
 
-
 func _ready() -> void:
 	current_screen = Global.current_scene
 	arrowleft.play("idle")
@@ -95,3 +94,9 @@ func _on_ArrowLeft_animation_finished():
 func _on_ArrowRight_animation_finished():
 	if arrowright.animation == "hit":
 		arrowright.animation = "idle"
+
+func _input(event):
+	if event.is_action_pressed("fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
+	if event.is_action_pressed("close") && OS.window_fullscreen:
+		get_tree().quit()

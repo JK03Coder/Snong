@@ -5,6 +5,7 @@ export(PackedScene) var tail
 export(int) var speed = 200
 export(int) var deltaSpeed = 5
 export(int, 0, 50) var tail_segments = 20
+export(int, 0, 50) var win_segments = 1
 export(int) var segment_gap : int = 12
 export(int) var player_index: int = 0
 
@@ -25,6 +26,7 @@ onready var sprite := $Head/AnimatedSprite
 onready var growth_timer := $Head/GrowthTimer
 
 func _ready():
+	tail_segments = get_parent().init_segments
 	match player_index:
 		0:
 			moveset = ["move_up", "move_down", "move_left", "move_right"]
@@ -40,6 +42,7 @@ func _ready():
 		Global.p1_segments = tail_segments
 	else:
 		Global.p0_segments = tail_segments
+	win_segments = Global.win_segments_multi
 	sprite.play("default")
 	
 	head.connect("body_exited", self, "on_body_exited")
@@ -136,9 +139,8 @@ func remove_tail() -> void:
 			Global.p2_segments -= 1
 		else:
 			Global.p0_segments -= 1
-		if get_child_count() <= 1:
+		if get_child_count() <= win_segments+2:
 			emit_signal("won")
-			get_tree().change_scene(title)
 		get_child(get_child_count()-1).queue_free()
 		speed += deltaSpeed
 		hit_delay.start()
