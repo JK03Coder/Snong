@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 		panelmulti.visible = false
 		panelsingle.visible = true
 		if start_delay.is_stopped():
-			if Input.is_action_just_pressed("move_down"):
+			if Input.is_action_just_pressed("press_play"):
 				Global.current_scene = 0
 				SfxMan.play_clicksfx()
 				get_tree().change_scene(singleplayer_scene)
@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 		panelsingle.visible = false
 		panelmulti.visible = true
 		if start_delay.is_stopped():
-			if Input.is_action_pressed("move_down"):
+			if Input.is_action_pressed("press_play"):
 				Global.current_scene = 1
 				SfxMan.play_clicksfx()
 				get_tree().change_scene(multiplayer_scene)
