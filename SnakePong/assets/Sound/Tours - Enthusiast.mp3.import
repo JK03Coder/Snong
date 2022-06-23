@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tours - Enthusiast.mp3-d2122f3c01961fe9f61d7e31875f6b49.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/Tours - Enthusiast.mp3"
+dest_files=[ "res://.import/Tours - Enthusiast.mp3-d2122f3c01961fe9f61d7e31875f6b49.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

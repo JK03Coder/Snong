@@ -407,11 +407,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-autoplay = true
-bus = "Music"
-
 [node name="PanelSingleplayer" type="Node2D" parent="."]
 visible = false
 position = Vector2( 0, 6 )
@@ -420,11 +415,7 @@ position = Vector2( 0, 6 )
 position = Vector2( 648, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
-<<<<<<< HEAD
 frame = 3
-=======
-frame = 1
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -434,11 +425,7 @@ amplitude = 15.0
 position = Vector2( 120, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
-<<<<<<< HEAD
 frame = 3
-=======
-frame = 1
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 flip_h = true
 script = ExtResource( 7 )
@@ -543,11 +530,7 @@ position = Vector2( 7, -6 )
 rotation = 1.5708
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-<<<<<<< HEAD
 frame = 11
-=======
-frame = 7
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 amplitude = 9.0
@@ -561,11 +544,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-<<<<<<< HEAD
 frame = 3
-=======
-frame = 4
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -578,11 +557,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-<<<<<<< HEAD
 frame = 6
-=======
-frame = 7
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -596,11 +571,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-<<<<<<< HEAD
 frame = 4
-=======
-frame = 5
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -614,11 +585,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-<<<<<<< HEAD
 frame = 1
-=======
-frame = 2
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -632,10 +599,6 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-<<<<<<< HEAD
-=======
-frame = 1
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -649,10 +612,7 @@ rotation = 1.5708
 scale = Vector2( 3, 3 )
 z_index = -1
 frames = SubResource( 17 )
-<<<<<<< HEAD
 frame = 7
-=======
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 amplitude = 7.0
@@ -693,7 +653,7 @@ text = "Best:"
 align = 2
 
 [node name="SubjectLabel1" type="Label" parent="PanelMultiplayer"]
-self_modulate = Color( 0.996078, 0.0901961, 0.0901961, 1 )
+self_modulate = Color( 1, 0.0901961, 0.0901961, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -771,7 +731,7 @@ player_id = 1
 is_best = true
 
 [node name="SubjectLabel2" type="Label" parent="PanelMultiplayer"]
-self_modulate = Color( 0, 0.513726, 1, 1 )
+self_modulate = Color( 0, 0.517647, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -853,11 +813,7 @@ modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 120, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-<<<<<<< HEAD
 frame = 11
-=======
-frame = 7
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -868,15 +824,16 @@ modulate = Color( 0, 0.301961, 1, 1 )
 position = Vector2( 648, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-<<<<<<< HEAD
 frame = 11
-=======
-frame = 7
->>>>>>> parent of a469e67 (1.3 arcade mode release)
 playing = true
 script = ExtResource( 7 )
 isVert = true
 amplitude = 15.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "Music"
 
 [connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowLeft" to="." method="_on_ArrowLeft_animation_finished"]
 [connection signal="animation_finished" from="Labels/SubtitleLabel/ArrowRight" to="." method="_on_ArrowRight_animation_finished"]
