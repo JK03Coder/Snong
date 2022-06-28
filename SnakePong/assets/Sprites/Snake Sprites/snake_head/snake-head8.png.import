@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/snake-head8.png-ae1f0b05fc9c8fc988225927131aa01e.stex"
+path="res://.import/snake-head8.png-b7fb4f21ccbcbbbbe18b87c5d546bd95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Snake Sprites/snake-head8.png"
-dest_files=[ "res://.import/snake-head8.png-ae1f0b05fc9c8fc988225927131aa01e.stex" ]
+source_file="res://assets/Sprites/Snake Sprites/snake_head/snake-head8.png"
+dest_files=[ "res://.import/snake-head8.png-b7fb4f21ccbcbbbbe18b87c5d546bd95.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/snake_body_alt6.png-872d0dfd91a56a6ead4c0b4bb6f54d1c.stex"
+path="res://.import/snake_body_alt6.png-c6f5dea02da0f5615f10ea859da22de5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Snake Sprites/snake_body_alt6.png"
-dest_files=[ "res://.import/snake_body_alt6.png-872d0dfd91a56a6ead4c0b4bb6f54d1c.stex" ]
+source_file="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt6.png"
+dest_files=[ "res://.import/snake_body_alt6.png-c6f5dea02da0f5615f10ea859da22de5.stex" ]
 
 [params]
 

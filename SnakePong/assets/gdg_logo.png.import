@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gdg_logo.png-ea7f48e1a07973d380cd803a6d862faf.stex"
+path="res://.import/gdg_logo.png-16aa505ae6f13a93a72f66863d28e447.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gdg_logo.png"
-dest_files=[ "res://.import/gdg_logo.png-ea7f48e1a07973d380cd803a6d862faf.stex" ]
+source_file="res://assets/gdg_logo.png"
+dest_files=[ "res://.import/gdg_logo.png-16aa505ae6f13a93a72f66863d28e447.stex" ]
 
 [params]
 

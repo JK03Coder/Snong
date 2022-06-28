@@ -1,5 +1,6 @@
 extends Node2D
 
+export(String, FILE, "*.tscn,*.scn") var title
 export(int) var init_speed : int = 200
 export(int) var win_segments : int = 5
 export(int) var init_segments = 25
@@ -35,7 +36,7 @@ func _on_Snake1_game_over():
 		if Global.p1_time[0] < Global.p1_time[1]:
 			Global.p1_time[1] = survival_time
 	
-	get_tree().change_scene("res://scenes/TitleScreen.tscn")
+	get_tree().change_scene(title)
 
 func _on_Snake2_game_over():
 	Global.p2lost = true
@@ -57,7 +58,7 @@ func _on_Snake2_game_over():
 		if Global.p2_time[0] < Global.p2_time[1]:
 			Global.p2_time[1] = survival_time
 	
-	get_tree().change_scene("res://scenes/TitleScreen.tscn")
+	get_tree().change_scene(title)
 
 
 
@@ -68,7 +69,7 @@ func _on_Snake1_won():
 	if Global.p1_time[0] < Global.p1_time[1]:
 		Global.p1_time[1] = Global.p1_time[0]
 	
-	get_tree().change_scene("res://scenes/TitleScreen.tscn")
+	get_tree().change_scene(title)
 
 
 func _on_Snake2_won():
@@ -78,4 +79,4 @@ func _on_Snake2_won():
 	if Global.p2_time[0] < Global.p2_time[1]:
 		Global.p2_time[1] = Global.p2_time[0]
 	
-	get_tree().change_scene("res://scenes/TitleScreen.tscn")
+	get_tree().change_scene(title)

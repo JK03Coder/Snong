@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pacman6.png-f8fcda555afe7be94e6b6212ab119052.stex"
+path="res://.import/pacman6.png-9d632c19c8facb3074b711df57bcbe4d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Ball Sprites/pacman6.png"
-dest_files=[ "res://.import/pacman6.png-f8fcda555afe7be94e6b6212ab119052.stex" ]
+source_file="res://assets/Sprites/Ball Sprites/pacman/pacman6.png"
+dest_files=[ "res://.import/pacman6.png-9d632c19c8facb3074b711df57bcbe4d.stex" ]
 
 [params]
 
