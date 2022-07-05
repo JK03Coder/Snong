@@ -6,6 +6,7 @@ export(int) var speed = 200
 export(int) var deltaSpeed = 5
 export(int, 0, 50) var tail_segments = 20
 export(int, 0, 50) var win_segments = 1
+export(float, 0.0, 2.0) var hit_delay_time : float = 0.5
 export(int) var segment_gap : int = 12
 export(int) var player_index: int = 0
 
@@ -49,6 +50,7 @@ func _ready():
 	# add the starting tail segments
 	for i in tail_segments:
 		add_tail()
+	hit_delay.wait_time = hit_delay_time
 
 
 func _process(delta: float) -> void:
@@ -165,12 +167,12 @@ func _on_TurnDelay_timeout():
 		delayed_input = false
 
 
-func _on_GrowthTimer_timeout():
-	if player_index == 1 and Global.p1_segments < tail_segments:
-		add_tail()
-		Global.p1_segments += 1
-		growth_timer.start()
-	elif player_index == 2 and Global.p2_segments < tail_segments:
-		add_tail()
-		Global.p2_segments += 1
-		growth_timer.start()
+#func _on_GrowthTimer_timeout():
+#	if player_index == 1 and Global.p1_segments < tail_segments:
+#		add_tail()
+#		Global.p1_segments += 1
+#		growth_timer.start()
+#	elif player_index == 2 and Global.p2_segments < tail_segments:
+#		add_tail()
+#		Global.p2_segments += 1
+#		growth_timer.start()

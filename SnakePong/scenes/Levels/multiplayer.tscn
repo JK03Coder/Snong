@@ -5,9 +5,9 @@
 [ext_resource path="res://scenes/Features/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Main Objects/Ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Shaders/multiply.tres" type="Shader" id=5]
-[ext_resource path="res://assets/Sprites/Tiles/tileset.tres" type="TileSet" id=6]
+[ext_resource path="res://assets/Sprites/Tiles/floor-tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://scripts/UI Scripts/SegmentCount.gd" type="Script" id=7]
-[ext_resource path="res://scripts/Shaders/monitoreffect.tres" type="Shader" id=8]
+[ext_resource path="res://assets/Materials/screen_shader_material.tres" type="Material" id=8]
 [ext_resource path="res://assets/UI/upheaval/upheavtt.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/Sound/HoliznaCC0 - Final Level.mp3" type="AudioStream" id=10]
 [ext_resource path="res://scripts/Shaders/fog.tres" type="Shader" id=11]
@@ -31,34 +31,15 @@ shader_param/velocity = Vector2( 0.15, 0.08 )
 shader_param/fog_color = Color( 0, 0, 0, 1 )
 shader_param/noise = SubResource( 9 )
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 8 )
-shader_param/overlay = true
-shader_param/scanlines_opacity = 0.05
-shader_param/scanlines_width = 0.5
-shader_param/grille_opacity = 0.05
-shader_param/resolution = Vector2( 768, 512 )
-shader_param/pixelate = false
-shader_param/roll = true
-shader_param/roll_speed = 4.0
-shader_param/roll_size = 43.137
-shader_param/roll_opacity = 0.278
-shader_param/roll_variation = 1.5
-shader_param/distort_intensity = 0.003
-shader_param/noise_opacity = 0.4
-shader_param/noise_speed = 5.0
-shader_param/static_noise_intensity = 0.07
-shader_param/aberration = 0.012
-shader_param/brightness = 1.5
-shader_param/discolor = true
-shader_param/warp_amount = 0.8
-shader_param/clip_warp = false
-shader_param/vignette_intensity = 0.4
-shader_param/vignette_opacity = 0.3
-
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
 shader = ExtResource( 5 )
-shader_param/multiply_color = Color( 1, 0, 0, 1 )
+shader_param/multiply_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/multiply_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 18.0
@@ -104,7 +85,7 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
-material = SubResource( 5 )
+material = ExtResource( 8 )
 margin_right = 768.0
 margin_bottom = 512.0
 __meta__ = {
@@ -114,12 +95,13 @@ __meta__ = {
 [node name="DeathTimer" type="Timer" parent="."]
 
 [node name="Snake1" parent="." instance=ExtResource( 1 )]
-material = SubResource( 10 )
+material = SubResource( 14 )
 position = Vector2( 90, 80 )
 z_index = 11
 player_index = 1
 
 [node name="Snake2" parent="." instance=ExtResource( 1 )]
+material = SubResource( 15 )
 position = Vector2( 678, 80 )
 z_index = 11
 player_index = 2
@@ -237,3 +219,8 @@ stream = ExtResource( 10 )
 volume_db = -3.0
 autoplay = true
 mix_target = 1
+
+[connection signal="game_over" from="Snake1" to="." method="_on_Snake1_game_over"]
+[connection signal="won" from="Snake1" to="." method="_on_Snake1_won"]
+[connection signal="game_over" from="Snake2" to="." method="_on_Snake2_game_over"]
+[connection signal="won" from="Snake2" to="." method="_on_Snake2_won"]
