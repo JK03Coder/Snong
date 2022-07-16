@@ -129,7 +129,6 @@ z_index = 11
 linear_velocity = Vector2( -200, 80 )
 
 [node name="AlternateMap" type="TileMap" parent="."]
-z_index = 10
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
