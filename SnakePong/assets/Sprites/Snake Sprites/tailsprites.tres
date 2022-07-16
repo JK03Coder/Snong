@@ -1,25 +1,25 @@
 [gd_resource type="SpriteFrames" load_steps=17 format=2]
 
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt1.png" type="Texture" id=1]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt3.png" type="Texture" id=2]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt7.png" type="Texture" id=3]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt8.png" type="Texture" id=4]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt4.png" type="Texture" id=5]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt2.png" type="Texture" id=6]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt6.png" type="Texture" id=7]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_alt5.png" type="Texture" id=8]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main8.png" type="Texture" id=9]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main4.png" type="Texture" id=10]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main6.png" type="Texture" id=11]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main5.png" type="Texture" id=12]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main3.png" type="Texture" id=13]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main7.png" type="Texture" id=14]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main1.png" type="Texture" id=15]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_main2.png" type="Texture" id=16]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink8.png" type="Texture" id=1]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink7.png" type="Texture" id=2]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink6.png" type="Texture" id=3]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed5.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed6.png" type="Texture" id=5]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed7.png" type="Texture" id=6]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed8.png" type="Texture" id=7]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink2.png" type="Texture" id=8]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed1.png" type="Texture" id=9]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed3.png" type="Texture" id=10]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed4.png" type="Texture" id=11]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink3.png" type="Texture" id=12]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink4.png" type="Texture" id=13]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_closed2.png" type="Texture" id=14]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink5.png" type="Texture" id=15]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body_blink1.png" type="Texture" id=16]
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0

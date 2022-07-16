@@ -23,7 +23,8 @@ signal won
 onready var head := $Head
 onready var turn_delay := $Head/TurnDelay
 onready var hit_delay := $Head/HitDelay
-onready var sprite := $Head/AnimatedSprite
+onready var head_animation := $Head/HeadAnimation
+onready var tongue_animation := $Head/HeadAnimation/TongueAnimation
 onready var growth_timer := $Head/GrowthTimer
 
 func _ready():
@@ -44,7 +45,8 @@ func _ready():
 	else:
 		Global.p0_segments = tail_segments
 	win_segments = Global.win_segments_multi
-	sprite.play("default")
+	head_animation.play("default")
+	tongue_animation.play("default")
 	
 	head.connect("body_exited", self, "on_body_exited")
 	# add the starting tail segments
@@ -56,13 +58,13 @@ func _ready():
 func _process(delta: float) -> void:
 	# Rotation based on direction of motion
 	if input_dir == Vector2.LEFT:
-		sprite.rotation_degrees = 90.0
+		head_animation.rotation_degrees = 90.0
 	elif input_dir == Vector2.UP:
-		sprite.rotation_degrees = 180.0
+		head_animation.rotation_degrees = 180.0
 	elif input_dir == Vector2.RIGHT:
-		sprite.rotation_degrees = 270.0
+		head_animation.rotation_degrees = 270.0
 	else:
-		sprite.rotation_degrees = 0.0
+		head_animation.rotation_degrees = 0.0
 
 
 func _physics_process(delta: float) -> void:

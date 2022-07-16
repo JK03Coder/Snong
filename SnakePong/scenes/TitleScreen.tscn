@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://scripts/Levels/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Shaders/monitoreffect.tres" type="Shader" id=2]
@@ -25,14 +25,8 @@
 [ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head8.png" type="Texture" id=23]
 [ext_resource path="res://assets/Sprites/Ball Sprites/pacman/pacman3.png" type="Texture" id=24]
 [ext_resource path="res://assets/Sprites/Ball Sprites/pacman/pacman4.png" type="Texture" id=25]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body1.png" type="Texture" id=26]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body2.png" type="Texture" id=27]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body3.png" type="Texture" id=28]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body4.png" type="Texture" id=29]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body5.png" type="Texture" id=30]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body6.png" type="Texture" id=31]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body8.png" type="Texture" id=32]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_body/snake_body7.png" type="Texture" id=33]
+[ext_resource path="res://assets/Sprites/Snake Sprites/headsprites.tres" type="SpriteFrames" id=26]
+[ext_resource path="res://assets/Sprites/Snake Sprites/tailsprites.tres" type="SpriteFrames" id=27]
 [ext_resource path="res://assets/logo_32.png" type="Texture" id=34]
 [ext_resource path="res://assets/gdg_logo.png" type="Texture" id=35]
 
@@ -212,14 +206,6 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 12.0
-} ]
-
-[sub_resource type="SpriteFrames" id=17]
-animations = [ {
-"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 32 ) ],
-"loop": true,
-"name": "default",
-"speed": 6.0
 } ]
 
 [node name="TitleScreen" type="Control"]
@@ -414,6 +400,7 @@ position = Vector2( 0, 6 )
 position = Vector2( 648, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
+frame = 2
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -423,6 +410,7 @@ amplitude = 15.0
 position = Vector2( 120, 120 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 15 )
+frame = 2
 playing = true
 flip_h = true
 script = ExtResource( 7 )
@@ -522,12 +510,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite4" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
+[node name="headsprite" type="AnimatedSprite" parent="PanelSingleplayer/Snoodle"]
 position = Vector2( 7, -6 )
 rotation = 1.5708
 scale = Vector2( 3, 3 )
-frames = SubResource( 16 )
-frame = 1
+frames = ExtResource( 26 )
+frame = 12
 playing = true
 script = ExtResource( 7 )
 amplitude = 9.0
@@ -540,8 +528,8 @@ position = Vector2( 48, -6 )
 rotation = 1.5708
 scale = Vector2( 2.7, 2.7 )
 z_index = -1
-frames = SubResource( 17 )
-frame = 5
+frames = ExtResource( 27 )
+frame = 15
 playing = true
 script = ExtResource( 7 )
 __meta__ = {
@@ -557,7 +545,8 @@ position = Vector2( 84, -6 )
 rotation = 1.5708
 scale = Vector2( 2.7, 2.7 )
 z_index = -1
-frames = SubResource( 17 )
+frames = ExtResource( 27 )
+frame = 13
 playing = true
 script = ExtResource( 7 )
 __meta__ = {
@@ -574,8 +563,8 @@ position = Vector2( 120, -6 )
 rotation = 1.5708
 scale = Vector2( 2.7, 2.7 )
 z_index = -1
-frames = SubResource( 17 )
-frame = 5
+frames = ExtResource( 27 )
+frame = 11
 playing = true
 script = ExtResource( 7 )
 __meta__ = {
@@ -592,8 +581,8 @@ position = Vector2( 156, -6 )
 rotation = 1.5708
 scale = Vector2( 2.7, 2.7 )
 z_index = -1
-frames = SubResource( 17 )
-frame = 3
+frames = ExtResource( 27 )
+frame = 9
 playing = true
 script = ExtResource( 7 )
 __meta__ = {
@@ -610,8 +599,8 @@ position = Vector2( 192, -6 )
 rotation = 1.5708
 scale = Vector2( 2.7, 2.7 )
 z_index = -1
-frames = SubResource( 17 )
-frame = 2
+frames = ExtResource( 27 )
+frame = 7
 playing = true
 script = ExtResource( 7 )
 __meta__ = {
@@ -628,8 +617,8 @@ position = Vector2( 228, -6 )
 rotation = 1.5708
 scale = Vector2( 2.7, 2.7 )
 z_index = -1
-frames = SubResource( 17 )
-frame = 1
+frames = ExtResource( 27 )
+frame = 5
 playing = true
 script = ExtResource( 7 )
 __meta__ = {
@@ -835,7 +824,7 @@ modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 120, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 1
+frame = 14
 playing = true
 script = ExtResource( 7 )
 isVert = true
@@ -846,7 +835,7 @@ modulate = Color( 0, 0.301961, 1, 1 )
 position = Vector2( 648, 111 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 16 )
-frame = 1
+frame = 14
 playing = true
 script = ExtResource( 7 )
 isVert = true

@@ -10,8 +10,8 @@ onready var turn_rate : float = get_parent().turn_rate
 func _ready():
 	connect("area_entered", self, "on_area_entered")
 	connect("body_exited", self, "on_body_exited")
-	$AnimatedSprite.set_frame(floor(rand_range(0.1,7.9)))
-	$AnimatedSprite.play("default")
+	$BodyAnimation.set_frame(floor(rand_range(0.1,7.9)))
+	$BodyAnimation.play("default")
 
 func _process(delta):
 	speed = get_parent().speed
