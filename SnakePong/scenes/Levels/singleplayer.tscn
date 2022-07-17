@@ -93,7 +93,7 @@ z_index = 10
 speed = 180
 deltaSpeed = 4
 tail_segments = 35
-hit_delay_time = 0.3
+hit_delay_time = 0.33
 
 [node name="Walls" type="Node2D" parent="."]
 
