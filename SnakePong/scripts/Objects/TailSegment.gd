@@ -10,8 +10,10 @@ onready var turn_rate : float = get_parent().turn_rate
 func _ready():
 	connect("area_entered", self, "on_area_entered")
 	connect("body_exited", self, "on_body_exited")
-	$AnimatedSprite.set_frame(floor(rand_range(0.1,7.9)))
-	$AnimatedSprite.play("default")
+	$BodyAnimation.set_frame(floor(rand_range(0.1,7.9)))
+	$BodyAnimation.play("default")
+	$BodyAnimation/BodyEyeAnimation.set_frame(floor(rand_range(0.1,7.9)))
+	$BodyAnimation/BodyEyeAnimation.play("default")
 
 func _process(delta):
 	speed = get_parent().speed
@@ -31,7 +33,7 @@ func on_area_entered(area: Area2D) -> void:
 	if area.name == "Head":
 		get_parent().death()
 
-# Code for when ball "collides" with the snake cody
+
 func on_body_exited(body: Node) -> void:
 	if body.name == "Ball":
 		SfxMan.play_collisionSFX()

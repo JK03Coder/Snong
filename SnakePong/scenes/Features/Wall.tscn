@@ -9,4 +9,4 @@ extents = Vector2( 385.125, 10 )
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PoolVector2Array( 386, -10, 386, 10, -385, 10, -385, -10 )
+polygon = PoolVector2Array( 386, -10, 386, 10, -386, 10, -386, -10 )

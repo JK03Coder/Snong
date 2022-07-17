@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://scenes/Main Objects/SnakeMultiplayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Main Objects/Snake.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Levels/multiplayer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Features/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Main Objects/Ball.tscn" type="PackedScene" id=4]

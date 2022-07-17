@@ -1,61 +1,77 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/Objects/Snake.gd" type="Script" id=1]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head2.png" type="Texture" id=2]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head5.png" type="Texture" id=3]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head7.png" type="Texture" id=4]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head8.png" type="Texture" id=5]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head3.png" type="Texture" id=6]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head4.png" type="Texture" id=7]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head6.png" type="Texture" id=8]
-[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-head1.png" type="Texture" id=9]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue7.png" type="Texture" id=2]
+[ext_resource path="res://assets/Sprites/Snake Sprites/headsprites.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue2.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue4.png" type="Texture" id=5]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue1.png" type="Texture" id=6]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue3.png" type="Texture" id=7]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue5.png" type="Texture" id=8]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue6.png" type="Texture" id=9]
 [ext_resource path="res://scenes/Main Objects/TailSegment.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/Shaders/multiply.tres" type="Shader" id=11]
+[ext_resource path="res://assets/Sprites/Snake Sprites/snake_head/snake-tongue8.png" type="Texture" id=12]
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 5.0
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/multiply_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "default",
-"speed": 10.0
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id=6]
+radius = 7.0
+
 [node name="Snake" type="Node2D" groups=["snake"]]
+material = SubResource( 5 )
 script = ExtResource( 1 )
 tail = ExtResource( 10 )
 
 [node name="Head" type="Area2D" parent="."]
 use_parent_material = true
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Head"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/KinematicBody2D"]
-shape = SubResource( 4 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Head"]
+[node name="HeadAnimation" type="AnimatedSprite" parent="Head"]
 use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
-frames = SubResource( 2 )
-frame = 15
-playing = true
+frames = ExtResource( 3 )
+
+[node name="TongueAnimation" type="AnimatedSprite" parent="Head/HeadAnimation"]
+position = Vector2( 0, 8 )
+frames = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
 z_index = 1
 shape = SubResource( 3 )
 
+[node name="KinematicBody2D" type="KinematicBody2D" parent="Head"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/KinematicBody2D"]
+z_index = 1
+shape = SubResource( 6 )
+
 [node name="HitDelay" type="Timer" parent="Head"]
+wait_time = 0.3
 one_shot = true
 
 [node name="TurnDelay" type="Timer" parent="Head"]
-process_mode = 0
 wait_time = 0.06
+one_shot = true
+
+[node name="GrowthTimer" type="Timer" parent="Head"]
+wait_time = 10.0
 one_shot = true
 
 [connection signal="area_entered" from="Head" to="." method="_on_Head_area_entered"]
 [connection signal="timeout" from="Head/TurnDelay" to="." method="_on_TurnDelay_timeout"]
+[connection signal="timeout" from="Head/GrowthTimer" to="." method="_on_GrowthTimer_timeout"]
