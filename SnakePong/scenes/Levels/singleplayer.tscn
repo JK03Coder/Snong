@@ -87,10 +87,10 @@ margin_right = 768.0
 margin_bottom = 512.0
 
 [node name="Snake" parent="." instance=ExtResource( 7 )]
+modulate = Color( 1, 0.215686, 0.215686, 1 )
 material = SubResource( 14 )
 position = Vector2( 98, 61 )
 z_index = 10
-speed = 180
 deltaSpeed = 4
 tail_segments = 35
 hit_delay_time = 0.33
@@ -118,7 +118,6 @@ rotation = 1.5708
 position = Vector2( 480, 256 )
 z_index = 11
 linear_velocity = Vector2( 140, 100 )
-speed = 260.0
 deltaSpeed = 7.0
 changeTime = 5.0
 
@@ -188,7 +187,7 @@ environment = SubResource( 2 )
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -6.0
+volume_db = -8.0
 autoplay = true
 
 [connection signal="game_over" from="Snake" to="." method="_on_Snake_game_over"]

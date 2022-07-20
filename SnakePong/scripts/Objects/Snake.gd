@@ -1,6 +1,5 @@
 extends Node2D
 
-export(String, FILE, "*.tscn,*.scn") var title
 export(PackedScene) var tail
 export(int) var speed = 200
 export(int) var deltaSpeed = 5
@@ -21,6 +20,7 @@ signal game_over
 signal won
 
 onready var head := $Head
+onready var body := $Body
 onready var turn_delay := $Head/TurnDelay
 onready var hit_delay := $Head/HitDelay
 onready var head_animation := $Head/HeadAnimation

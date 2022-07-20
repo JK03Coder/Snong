@@ -27,7 +27,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 8.0
+radius = 7.5
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 7.0
@@ -47,7 +47,7 @@ z_index = 1
 frames = ExtResource( 3 )
 
 [node name="TongueAnimation" type="AnimatedSprite" parent="Head/HeadAnimation"]
-position = Vector2( 0, 8 )
+position = Vector2( 0, 11 )
 frames = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
@@ -65,7 +65,8 @@ wait_time = 0.3
 one_shot = true
 
 [node name="TurnDelay" type="Timer" parent="Head"]
-wait_time = 0.06
+process_mode = 0
+wait_time = 0.072
 one_shot = true
 
 [node name="GrowthTimer" type="Timer" parent="Head"]
