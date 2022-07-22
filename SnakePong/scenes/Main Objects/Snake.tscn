@@ -36,6 +36,7 @@ radius = 7.0
 material = SubResource( 5 )
 script = ExtResource( 1 )
 tail = ExtResource( 10 )
+speed = 400
 
 [node name="Head" type="Area2D" parent="."]
 use_parent_material = true
@@ -66,7 +67,7 @@ one_shot = true
 
 [node name="TurnDelay" type="Timer" parent="Head"]
 process_mode = 0
-wait_time = 0.072
+wait_time = 0.05
 one_shot = true
 
 [node name="GrowthTimer" type="Timer" parent="Head"]

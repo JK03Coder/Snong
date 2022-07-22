@@ -80,9 +80,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="SnakePong"
+config/name="Snong"
 run/main_scene="res://scenes/TitleScreen.tscn"
-config/icon="res://assets/Sprites/Snake Sprites/snake-head2.png"
+config/icon="res://assets/Sprites/Snake Sprites/snake_head/snake-head1.png"
 
 [autoload]
 
@@ -258,6 +258,7 @@ press_play={
 
 [physics]
 
+common/physics_fps=120
 common/enable_pause_aware_picking=true
 2d/default_gravity=0
 2d/default_linear_damp=0.0
