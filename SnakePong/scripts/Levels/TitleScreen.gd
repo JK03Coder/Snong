@@ -45,7 +45,7 @@ func _ready() -> void:
 		Global.p2lost = false
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Swaps between modes
 	if start_delay.is_stopped():
 		if Input.is_action_just_pressed("move_left"):

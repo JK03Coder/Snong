@@ -69,7 +69,10 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# if a movement key is pressed once
-	if (Input.is_action_just_pressed(moveset[1]) or Input.is_action_just_pressed(moveset[0]) or Input.is_action_just_pressed(moveset[3]) or Input.is_action_just_pressed(moveset[2])):
+	if (Input.is_action_just_pressed(moveset[1]) 
+	or Input.is_action_just_pressed(moveset[0]) 
+	or Input.is_action_just_pressed(moveset[3]) 
+	or Input.is_action_just_pressed(moveset[2])):
 		# When player turns in a timeframe after the turn delay
 		if turn_delay.is_stopped():
 			# if you're moving along the x axis

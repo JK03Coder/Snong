@@ -9,7 +9,7 @@ func _ready():
 	#var angle = float(randi()%1 - 1)*(rand_range(20.0, 40.0))
 	#linear_velocity = Vector2(cos(angle), sin(angle)) * speed
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Sets a global ball position.
 	Global.ball_position = global_position
 	# Rotates sprite based on angle of velocity.
