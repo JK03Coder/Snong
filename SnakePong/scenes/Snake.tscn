@@ -42,7 +42,7 @@ use_parent_material = true
 position = Vector2( 0, 1 )
 z_index = 1
 frames = SubResource( 2 )
-frame = 9
+frame = 19
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
@@ -50,6 +50,7 @@ z_index = 1
 shape = SubResource( 3 )
 
 [node name="HitDelay" type="Timer" parent="Head"]
+wait_time = 0.35
 one_shot = true
 
 [node name="TurnDelay" type="Timer" parent="Head"]

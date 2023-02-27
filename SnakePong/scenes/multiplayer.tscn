@@ -31,26 +31,26 @@ shader_param/velocity = Vector2( 0.15, 0.08 )
 shader_param/fog_color = Color( 0, 0, 0, 1 )
 shader_param/noise = SubResource( 9 )
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=15]
 shader = ExtResource( 8 )
 shader_param/overlay = true
-shader_param/scanlines_opacity = 0.05
+shader_param/scanlines_opacity = 0.1
 shader_param/scanlines_width = 0.5
 shader_param/grille_opacity = 0.05
-shader_param/resolution = Vector2( 768, 512 )
+shader_param/resolution = Vector2( 384, 256 )
 shader_param/pixelate = false
 shader_param/roll = true
-shader_param/roll_speed = 4.0
+shader_param/roll_speed = 5.0
 shader_param/roll_size = 43.137
 shader_param/roll_opacity = 0.278
 shader_param/roll_variation = 1.5
 shader_param/distort_intensity = 0.003
 shader_param/noise_opacity = 0.4
 shader_param/noise_speed = 5.0
-shader_param/static_noise_intensity = 0.07
-shader_param/aberration = 0.012
+shader_param/static_noise_intensity = 0.1
+shader_param/aberration = 0.01
 shader_param/brightness = 1.5
-shader_param/discolor = true
+shader_param/discolor = false
 shader_param/warp_amount = 0.8
 shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.4
@@ -64,8 +64,8 @@ shader_param/multiply_color = Color( 1, 0, 0, 1 )
 radius = 18.0
 height = 30.0
 
-[sub_resource type="DynamicFont" id=6]
-size = 30
+[sub_resource type="DynamicFont" id=14]
+size = 28
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=12]
@@ -73,7 +73,7 @@ size = 30
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=13]
-size = 20
+size = 18
 font_data = ExtResource( 9 )
 
 [sub_resource type="Environment" id=2]
@@ -103,7 +103,7 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
-material = SubResource( 5 )
+material = SubResource( 15 )
 margin_right = 768.0
 margin_bottom = 512.0
 __meta__ = {
@@ -146,6 +146,7 @@ position = Vector2( 768, 274 )
 rotation = 1.5708
 
 [node name="Ball" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.34902, 0.929412, 0.329412, 1 )
 position = Vector2( 384, 257 )
 z_index = 11
 linear_velocity = Vector2( -200, 80 )
@@ -181,11 +182,11 @@ shape = SubResource( 7 )
 
 [node name="TimerCount" type="Label" parent="."]
 self_modulate = Color( 0.572549, 0.572549, 0.572549, 1 )
-margin_left = 320.0
+margin_left = 332.0
 margin_top = 241.0
-margin_right = 448.0
+margin_right = 436.0
 margin_bottom = 273.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 14 )
 text = "00:00"
 align = 1
 script = ExtResource( 12 )
@@ -241,7 +242,7 @@ environment = SubResource( 2 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -3.0
+volume_db = -6.0
 autoplay = true
 mix_target = 1
 

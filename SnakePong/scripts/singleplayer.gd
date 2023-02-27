@@ -2,7 +2,7 @@ extends Node2D
 
 var survival_time = 0.0
 export(int) var win_segments = 3
-export(int) var init_segments = 35
+export(int) var init_segments = 38
 
 func _ready():
 	Global.win_segments_single = win_segments
