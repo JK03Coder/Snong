@@ -25,7 +25,6 @@ onready var turn_delay := $Head/TurnDelay
 onready var hit_delay := $Head/HitDelay
 onready var head_animation := $Head/HeadAnimation
 onready var tongue_animation := $Head/HeadAnimation/TongueAnimation
-onready var growth_timer := $Head/GrowthTimer
 
 func _ready():
 	tail_segments = get_parent().init_segments
@@ -135,7 +134,6 @@ func on_body_exited(body: Node) -> void:
 	if body.name == "Ball":
 		SfxMan.play_collisionSFX()
 		remove_tail()
-		growth_timer.start()
 
 
 func remove_tail() -> void:
@@ -170,14 +168,3 @@ func _on_TurnDelay_timeout():
 					input_dir = input_strength
 					changed_dir = true
 		delayed_input = false
-
-
-#func _on_GrowthTimer_timeout():
-#	if player_index == 1 and Global.p1_segments < tail_segments:
-#		add_tail()
-#		Global.p1_segments += 1
-#		growth_timer.start()
-#	elif player_index == 2 and Global.p2_segments < tail_segments:
-#		add_tail()
-#		Global.p2_segments += 1
-#		growth_timer.start()

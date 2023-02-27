@@ -48,22 +48,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Swaps between modes
 	if start_delay.is_stopped():
-		if Input.is_action_just_pressed("move_left"):
-			current_screen -= 1
-			if current_screen < 0:
-				current_screen = 1
-			arrowleft.play("hit")
-			SfxMan.play_clicksfx()
-			start_delay.start()
-		elif Input.is_action_just_pressed("move_right"):
+		if Input.is_action_just_pressed("swap_mode"):
 			current_screen += 1
-			if current_screen > 1:
-				current_screen = 0
-			arrowright.play("hit")
-			SfxMan.play_clicksfx()
-			start_delay.start()
 	# Changes scene to singleplayer on input
-	if current_screen == 0:
+	if current_screen % 2 == 0:
 		subtitle_label.text = "Singleplayer"
 		subtitle_label.self_modulate = Color(0.34902, 0.933333, 0.32549)
 		pressplayer.play("Pinging")
@@ -75,7 +63,7 @@ func _process(_delta: float) -> void:
 				SfxMan.play_clicksfx()
 				get_tree().change_scene(singleplayer_scene)
 	# Changes scene to multiplayer on input
-	elif current_screen == 1:
+	elif current_screen % 2 == 1:
 		subtitle_label.text = "Multiplayer"
 		subtitle_label.self_modulate = Color(0.831373, 0.231373, 0.886275)
 		pressplayer.play("Pinging")
