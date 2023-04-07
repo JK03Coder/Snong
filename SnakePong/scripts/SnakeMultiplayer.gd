@@ -165,12 +165,12 @@ func _on_TurnDelay_timeout():
 		delayed_input = false
 
 
-func _on_GrowthTimer_timeout():
-	if player_index == 1 and Global.p1_segments < tail_segments:
-		add_tail()
-		Global.p1_segments += 1
-		growth_timer.start()
-	elif player_index == 2 and Global.p2_segments < tail_segments:
-		add_tail()
-		Global.p2_segments += 1
-		growth_timer.start()
+#func _on_GrowthTimer_timeout():
+#	if player_index == 1 and Global.p1_segments < tail_segments:
+#		add_tail()
+#		Global.p1_segments += 1
+#		growth_timer.start()
+#	elif player_index == 2 and Global.p2_segments < tail_segments:
+#		add_tail()
+#		Global.p2_segments += 1
+#		growth_timer.start()

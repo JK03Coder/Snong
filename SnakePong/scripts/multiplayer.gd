@@ -2,7 +2,7 @@ extends Node2D
 
 export(int) var init_speed : int = 200
 export(int) var win_segments : int = 5
-export(int) var init_segments = 25
+export(int) var init_segments = 20
 
 var survival_time = 0.0
 

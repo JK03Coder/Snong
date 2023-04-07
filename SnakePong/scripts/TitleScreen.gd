@@ -48,20 +48,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Swaps between modes
 	if start_delay.is_stopped():
-		if Input.is_action_just_pressed("move_left"):
+		if Input.is_action_just_pressed("swap_mode"):
 			current_screen -= 1
 			if current_screen < 0:
 				current_screen = 1
 			arrowleft.play("hit")
-			SfxMan.play_clicksfx()
-			start_delay.start()
-		elif Input.is_action_just_pressed("move_right"):
-			current_screen += 1
-			if current_screen > 1:
-				current_screen = 0
 			arrowright.play("hit")
 			SfxMan.play_clicksfx()
 			start_delay.start()
+
 	# Changes scene to singleplayer on input
 	if current_screen == 0:
 		subtitle_label.text = "Singleplayer"
