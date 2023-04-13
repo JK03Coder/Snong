@@ -12,7 +12,7 @@ var win_segments_single: int = 3
 var win_segments_multi: int = 5
 
 var current_scene = 0
-# Arrays, for most recent value and the best value:
+# Arrays, for [most recent value, best value]:
 #     count = segment count; time = time before death.
 var p0_count = [38,38]
 var p0_time = [0.0,0.0]

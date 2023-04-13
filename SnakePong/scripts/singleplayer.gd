@@ -28,8 +28,10 @@ func _on_Snake_game_over():
 func _on_Snake_won():
 	Global.won = true
 	Global.p0_time[0] = survival_time
+	if Global.p0_count[1] >= 0:
+		Global.p0_time[1] = survival_time
+	elif Global.p0_time[0] < Global.p0_time[1] && Global.p0_count[0] == Global.p0_count[1]:
+		Global.p0_time[1] = survival_time
 	Global.p0_count[1] = Global.p0_count[0]
-	if Global.p0_time[0] < Global.p0_time[1]:
-		Global.p0_time[1] = Global.p0_time[0]
 	
 	get_tree().change_scene("res://scenes/TitleScreen.tscn")
